@@ -46,7 +46,7 @@ const CardHeader = tw.div`flex justify-between items-center min-h-10`;
 const CardType = tw.div`text-secondary-dark font-bold text-lg font-primary`;
 const CardPrice = tw.div`font-semibold text-sm text-gray-600 font-primary text-decoration text-decoration-underline text-decoration-wavy underline-offset-medium`;
 const CardPriceAmount = tw.span`font-bold text-gray-800 text-lg`;
-const CardTitle = tw.h5`text-xl mt-4 font-bold text-gray-800 min-h-16 sm:min-w-68 font-secondary`;
+const CardTitle = tw.h5`text-xl mt-4 font-bold text-gray-800 min-h-16 min-w-64 font-secondary`;
 
 const CardMeta = styled.div`
   ${tw`flex flex-col
@@ -67,7 +67,7 @@ const Tours = ({
   cards = [
     {
       imageSrc: `${header.header.heroImg.sourceUrl}`,
-      title: "The wonders of Iceland",
+      title: "Northern lights and icebergs in winter",
       description:
         "Lorem ipsum dolor sit amet, consectur dolori adipiscing elit, sed do eiusmod tempor nova incididunt ut labore et dolore magna aliqua.",
       locationText: "South Coast",
@@ -78,7 +78,7 @@ const Tours = ({
     },
     {
       imageSrc: `${header.header.heroImg.sourceUrl}`,
-      title: "The wonders of Iceland The wonders of Iceland",
+      title: "The wonders of Iceland in summer",
       description:
         "Lorem ipsum dolor sit amet, consectur dolori adipiscing elit, sed do eiusmod tempor nova incididunt ut labore et dolore magna aliqua.",
       locationText: "Golden Circle",
@@ -89,7 +89,7 @@ const Tours = ({
     },
     {
       imageSrc: `${header.header.heroImg.sourceUrl}`,
-      title: "The wonders of Iceland",
+      title: "A long weekend in Reykjavík",
       description:
         "Lorem ipsum dolor sit amet, consectur dolori adipiscing elit, sed do eiusmod tempor nova incididunt ut labore et dolore magna aliqua.",
       locationText: "Westfjords",
@@ -100,7 +100,7 @@ const Tours = ({
     },
     {
       imageSrc: `${header.header.heroImg.sourceUrl}`,
-      title: "The wonders of Iceland The wonders of Iceland",
+      title: "Hiking tour in the heart of Iceland",
       description:
         "Lorem ipsum dolor sit amet, consectur dolori adipiscing elit, sed do eiusmod tempor nova incididunt ut labore et dolore magna aliqua.",
       locationText: "Westfjords",
@@ -111,7 +111,7 @@ const Tours = ({
     },
     {
       imageSrc: `${header.header.heroImg.sourceUrl}`,
-      title: "The wonders of Iceland The wonders of Iceland",
+      title: "Iceland tour with Klemmi and his poney 🤘",
       description:
         "Lorem ipsum dolor sit amet, consectur dolori adipiscing elit, sed do eiusmod tempor nova incididunt ut labore et dolore magna aliqua.",
       locationText: "Westfjords",

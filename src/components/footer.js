@@ -23,7 +23,7 @@ const LogoContainer = tw.div`flex items-center justify-center md:justify-start`;
 
 const CompanyDescription = tw.p`font-primary my-4 max-w-xs font-medium text-sm mx-auto md:mx-0 md:mr-4 `;
 
-const SocialLinksContainer = tw.div``;
+const SocialLinksContainer = tw.div`flex flex-col items-center justify-center sm:flex-row sm:justify-start`;
 const SocialLink = styled.a`
   ${tw`cursor-pointer inline-block my-4 rounded-full text-gray-100 transition duration-300 mr-4`}
 `;
@@ -58,43 +58,47 @@ const Footer = ({ items, menus, footerlinks, footer }) => {
             </Link>
           </CompanyDescription>
           <SocialLinksContainer>
-            <SocialLink
-              href={footer.footerIcon1.imageLink.imageLink}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Image
-                src={footer.footerIcon1.sourceUrl}
-                alt={footer.footerIcon1.altText}
-                width={24}
-                height={24}
-              />
-            </SocialLink>
-            <SocialLink
-              href={footer.footerIcon2.imageLink.imageLink}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Image
-                src={footer.footerIcon2.sourceUrl}
-                alt={footer.footerIcon2.altText}
-                width={24}
-                height={24}
-              />
-            </SocialLink>
-            <SocialLink
-              href={footer.footerIcon3.imageLink.imageLink}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Image
-                src={footer.footerIcon3.sourceUrl}
-                alt={footer.footerIcon3.altText}
-                width={24}
-                height={24}
-              />
-              <SocialLinkSpan>{footer.footerCaption}</SocialLinkSpan>
-            </SocialLink>
+            <div>
+              <SocialLink
+                href={footer.footerIcon1.imageLink.imageLink}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Image
+                  src={footer.footerIcon1.sourceUrl}
+                  alt={footer.footerIcon1.altText}
+                  width={24}
+                  height={24}
+                />
+              </SocialLink>
+              <SocialLink
+                href={footer.footerIcon2.imageLink.imageLink}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Image
+                  src={footer.footerIcon2.sourceUrl}
+                  alt={footer.footerIcon2.altText}
+                  width={24}
+                  height={24}
+                />
+              </SocialLink>
+            </div>
+            <div>
+              <SocialLink
+                href={footer.footerIcon3.imageLink.imageLink}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Image
+                  src={footer.footerIcon3.sourceUrl}
+                  alt={footer.footerIcon3.altText}
+                  width={24}
+                  height={24}
+                />
+                <SocialLinkSpan>{footer.footerCaption}</SocialLinkSpan>
+              </SocialLink>
+            </div>
           </SocialLinksContainer>
         </WideColumn>
         <LinksColumn>

@@ -12,7 +12,7 @@ const LeftColumn = tw.div`ml-8 mr-8 xl:pl-10 py-8`;
 const RightColumn = tw.div`bg-primary-dark bg-cover bg-center xl:ml-24 h-96 lg:h-auto lg:w-1/2 lg:flex-1`;
 const HeroContainer = tw.div`relative h-full w-full`;
 
-const Content = tw.div`mt-24 lg:mt-24 lg:mb-24 flex flex-col sm:items-center lg:items-stretch`;
+const Content = tw.div`mt-16 lg:mt-24 lg:mb-24 flex flex-col sm:items-center lg:items-stretch`;
 const Heading = tw.h1`font-primary text-secondary-dark text-3xl sm:text-5xl md:text-6xl lg:text-5xl font-black leading-none`;
 const Paragraph = tw.p`max-w-md my-8 lg:my-5 lg:my-8 sm:text-lg lg:text-base xl:text-lg leading-loose`;
 

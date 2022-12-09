@@ -15,7 +15,7 @@ const Column = tw.div`sm:w-5/12 flex flex-col`;
 const InputContainer = tw.div`relative py-5 mt-6`;
 const Label = tw.label`absolute top-0 left-0 tracking-wide font-semibold text-sm`;
 const Input = tw.input`w-full bg-transparent text-gray-100 text-base font-medium tracking-wide border-b-2 py-2 text-gray-100 hocus:border-primary-dark focus:outline-none transition duration-200`;
-const TextArea = tw.textarea`h-0 sm:h-full resize-none w-full bg-transparent text-gray-100 text-base font-medium tracking-wide border-b-2 py-2 text-gray-100 hocus:border-primary-dark focus:outline-none transition duration-200`;
+const TextArea = tw.textarea`h-full resize-none w-full bg-transparent text-gray-100 text-base font-medium tracking-wide border-b-2 py-2 text-gray-100 hocus:border-primary-dark focus:outline-none transition duration-200`;
 
 const SubmitButton = tw.button`w-full sm:w-32 mt-6 py-3 bg-gray-100 text-secondary-dark rounded font-bold tracking-wide shadow-lg uppercase text-sm transition duration-300 transform focus:outline-none focus:shadow-outline hover:bg-primary-dark hover:text-gray-100 hocus:-translate-y-px hocus:shadow-xl`;
 
