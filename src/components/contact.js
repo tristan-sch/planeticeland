@@ -42,6 +42,8 @@ const Contact = () => {
       );
   };
 
+  console.log("test");
+
   return (
     <Container id="contact">
       <Content>
