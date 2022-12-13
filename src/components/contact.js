@@ -1,7 +1,7 @@
-import { useState } from "react";
+import React, { useRef } from "react";
+import emailjs from "@emailjs/browser";
 import tw from "twin.macro";
-// import { useRouter } from "next/router";
-import { sendMail } from "../lib/api";
+// import ReCAPTCHA from "react-google-recaptcha";
 
 const Container = tw.div`relative`;
 const Content = tw.div`max-w-screen-xl mx-auto py-20 lg:py-24`;
@@ -20,28 +20,26 @@ const TextArea = tw.textarea`h-full resize-none w-full bg-transparent text-gray-
 const SubmitButton = tw.button`w-full sm:w-32 mt-6 py-3 bg-gray-100 text-secondary-dark rounded font-bold tracking-wide shadow-lg uppercase text-sm transition duration-300 transform focus:outline-none focus:shadow-outline hover:bg-primary-dark hover:text-gray-100 hocus:-translate-y-px hocus:shadow-xl`;
 
 const Contact = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
-  // const router = useRouter();
+  const form = useRef();
 
-  const handleSubmit = async (evt) => {
-    evt.preventDefault();
-    const emailContent = `
-      Message received from <strong>${name}</strong>. 
-      Their email address is <strong>${email}</strong>. <br />
-      They'd like to know about...
-      ${message}
-    `;
-    const data = await sendMail(
-      "New message from website contact form",
-      emailContent
-    );
+  const sendEmail = (e) => {
+    e.preventDefault();
 
-    if (data.sent) {
-      // email was sent successfully!
-      ("Thanks you");
-    }
+    emailjs
+      .sendForm(
+        process.env.NEXT_PUBLIC_MAILJS_SERVICE_ID,
+        process.env.NEXT_PUBLIC_MAILJS_TEMPLATE_ID,
+        form.current,
+        process.env.NEXT_PUBLIC_MAILJS_PUBLIC_KEY
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
   };
 
   return (
@@ -51,27 +49,25 @@ const Contact = () => {
           <div tw="mx-auto max-w-4xl">
             <Headline2>Contact us</Headline2>
             <Form>
-              <form action="#" onSubmit={handleSubmit}>
+              <form ref={form} onSubmit={sendEmail}>
                 <TwoColumn>
                   <Column>
                     <InputContainer>
-                      <Label htmlFor="name-input">Your Name</Label>
+                      <Label>Your Name</Label>
                       <Input
-                        id="name-input"
                         type="text"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
+                        name="from_name"
+                        id="from_name"
                         placeholder="E.g. John Doe"
                         required
                       />
                     </InputContainer>
                     <InputContainer>
-                      <Label htmlFor="email-input">Your Email Address</Label>
+                      <Label>Your Email Address</Label>
                       <Input
-                        id="email-input"
                         type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        id="email"
+                        name="email"
                         placeholder="E.g. john@mail.com"
                         required
                       />
@@ -79,18 +75,19 @@ const Contact = () => {
                   </Column>
                   <Column>
                     <InputContainer tw="flex-1">
-                      <Label htmlFor="name-input">Your Message</Label>
+                      <Label>Your Message</Label>
                       <TextArea
-                        id="message-input"
-                        value={message}
-                        onChange={(e) => setMessage(e.target.value)}
+                        name="message"
+                        id="emmessageail"
                         placeholder="E.g. Details about your event"
                       />
                     </InputContainer>
                   </Column>
                 </TwoColumn>
-
-                <SubmitButton type="submit" value="Submit">
+                {/* <ReCAPTCHA
+                  sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITEKEY}
+                /> */}
+                <SubmitButton type="submit" value="Send">
                   Submit
                 </SubmitButton>
               </form>
