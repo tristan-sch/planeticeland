@@ -3,7 +3,7 @@ import tw from "twin.macro";
 import Image from "next/image";
 import Link from "next/link";
 import Nav from "./Nav/nav";
-import { HeaderWrapper, HeaderContainer } from "../misc/Layouts.js";
+import { HeaderWrapper, HeaderContainer, Wrapper } from "../misc/Layouts.js";
 
 const TwoColumn = tw.div`flex flex-col lg:flex-row bg-gray-100`;
 const LeftColumn = tw.div`ml-8 mr-8 xl:pl-10 py-8`;
@@ -29,52 +29,54 @@ const HighlightedText = tw.span`text-primary-dark font-secondary`;
 
 export default function Header({ settings, items, homepage, menus }) {
   return (
-    <HeaderWrapper>
-      <HeaderContainer>
-        <TwoColumn>
-          <LeftColumn>
-            <Nav menus={menus} items={items} />
-            <Content>
-              <Heading>
-                {settings.title} <br />
-                <HighlightedText>{settings.description}</HighlightedText>
-              </Heading>
-              <Paragraph>{homepage.header.description}</Paragraph>
-              <ActionsWrapper>
-                <PrimaryAction>
-                  <Link href={homepage.header.headerButtonLink1} passHref>
-                    <a>{homepage.header.headerButton1}</a>
-                  </Link>
-                </PrimaryAction>
-                <SecondaryAction>
-                  <Link href={homepage.header.headerButtonLink2} passHref>
-                    <SecondaryActionText>
-                      <a>{homepage.header.headerButton2}</a>
-                    </SecondaryActionText>
-                  </Link>
-                  <Image
-                    src={items.doubleChevronDownIcon.sourceUrl}
-                    alt={items.doubleChevronDownIcon.altText}
-                    width={14}
-                    height={14}
-                  />
-                </SecondaryAction>
-              </ActionsWrapper>
-            </Content>
-          </LeftColumn>
-          <RightColumn>
-            <HeroContainer>
-              <Image
-                src={homepage.header.heroImg.sourceUrl}
-                alt={homepage.header.heroImg.altText}
-                layout="fill"
-                objectFit="cover"
-                priority="true"
-              />
-            </HeroContainer>
-          </RightColumn>
-        </TwoColumn>
-      </HeaderContainer>
-    </HeaderWrapper>
+    <Wrapper css={[tw`bg-gray-100`]}>
+      <HeaderWrapper>
+        <HeaderContainer>
+          <TwoColumn>
+            <LeftColumn>
+              <Nav menus={menus} items={items} />
+              <Content>
+                <Heading>
+                  {settings.title} <br />
+                  <HighlightedText>{settings.description}</HighlightedText>
+                </Heading>
+                <Paragraph>{homepage.header.description}</Paragraph>
+                <ActionsWrapper>
+                  <PrimaryAction>
+                    <Link href={homepage.header.headerButtonLink1} passHref>
+                      <a>{homepage.header.headerButton1}</a>
+                    </Link>
+                  </PrimaryAction>
+                  <SecondaryAction>
+                    <Link href={homepage.header.headerButtonLink2} passHref>
+                      <SecondaryActionText>
+                        <a>{homepage.header.headerButton2}</a>
+                      </SecondaryActionText>
+                    </Link>
+                    <Image
+                      src={items.doubleChevronDownIcon.sourceUrl}
+                      alt={items.doubleChevronDownIcon.altText}
+                      width={14}
+                      height={14}
+                    />
+                  </SecondaryAction>
+                </ActionsWrapper>
+              </Content>
+            </LeftColumn>
+            <RightColumn>
+              <HeroContainer>
+                <Image
+                  src={homepage.header.heroImg.sourceUrl}
+                  alt={homepage.header.heroImg.altText}
+                  layout="fill"
+                  objectFit="cover"
+                  priority="true"
+                />
+              </HeroContainer>
+            </RightColumn>
+          </TwoColumn>
+        </HeaderContainer>
+      </HeaderWrapper>
+    </Wrapper>
   );
 }

@@ -1,6 +1,8 @@
 import { useRouter } from "next/router";
 import ErrorPage from "next/error";
 import Layout from "../../components/layout";
+import SingleTourHeader from "../../components/Tours/SingleTour/singleTourHeader";
+
 import {
   getTours,
   getSingleTour,
@@ -26,7 +28,13 @@ const Tour = ({ tour, settings, items, menus, footerlinks, homepage }) => {
       footerlinks={footerlinks}
       homepage={homepage}
     >
-      <>{router.isFallback ? <div>Loading</div> : <div>{tour.title}</div>};</>
+      <SingleTourHeader
+        settings={settings}
+        items={items}
+        homepage={homepage}
+        menus={menus}
+        tour={tour}
+      />
     </Layout>
   );
 };

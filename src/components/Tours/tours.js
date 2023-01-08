@@ -88,11 +88,11 @@ export default function Tours({ homepage, items, tours }) {
   };
 
   return (
-    <Wrapper css={[tw`px-8 overflow-hidden`]}>
+    <Wrapper css={[tw`px-8 overflow-hidden`]} id="team">
       <Container>
         <Content>
           <HeadingWithControl>
-            <HeadingTitle>{homepage.tours.tourHeading}</HeadingTitle>
+            <HeadingTitle>{homepage.tours.toursHeading}</HeadingTitle>
             <Controls>
               <ControlButton onClick={sliderRef?.slickPrev}>
                 <Image

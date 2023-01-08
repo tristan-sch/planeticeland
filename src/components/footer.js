@@ -31,8 +31,10 @@ const SocialLinkSpan = tw.span`font-secondary text-xs ml-2 text-gray-800`;
 
 export default function Footer({ items, menus, footerlinks, homepage }) {
   return (
-    <Wrapper>
-      <Container css={[tw`bg-gray-200 -mb-8 px-8 py-0`]}>
+    <Wrapper css={[tw`bg-gray-200`]}>
+      <Container
+        css={[tw`bg-gray-200 -mb-8 px-8 py-0 2xl:max-w-screen-2xl 2xl:mx-auto`]}
+      >
         <FiveColumns>
           <WideColumn>
             <LogoContainer>

@@ -52,7 +52,7 @@ export default function Team({ items, homepage, staff }) {
       <Container css={[tw``]}>
         <HeadingContainer id="team">
           <Heading>{homepage.team.teamHeading}</Heading>
-          <Description>{homepage.teamteamDescription}</Description>
+          <Description>{homepage.team.teamDescription}</Description>
         </HeadingContainer>
         <Cards>
           {staff.map((staff, i) => (

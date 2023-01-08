@@ -2,7 +2,6 @@ import Layout from "../components/layout";
 import Header from "../components/header";
 import Guarantees from "../components/guarantees";
 import Tours from "../components/Tours/tours";
-import SingleTour from "../components/Tours/singleTour";
 import Team from "../components/team";
 import Faq from "../components/faq";
 import Contact from "../components/contact";
@@ -49,7 +48,6 @@ export default function Home({
         />
         <Guarantees guarantees={guarantees} />
         <Tours items={items} tours={tours} homepage={homepage} />
-        {/* <SingleTour items={items} /> */}
         <Team items={items} homepage={homepage} staff={staff} />
         <Faq items={items} faq={faq} questions={questions} />
         <Contact homepage={homepage} />

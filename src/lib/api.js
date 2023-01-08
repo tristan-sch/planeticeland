@@ -46,6 +46,10 @@ export async function getIconsAndLogos() {
             altText
             sourceUrl
           }
+          hamburgerIconGreen {
+            altText
+            sourceUrl
+          }
           closeIcon {
             altText
             sourceUrl
@@ -67,6 +71,18 @@ export async function getIconsAndLogos() {
             sourceUrl
           }
           locationIcon {
+            altText
+            sourceUrl
+          }
+          homeIcon {
+            altText
+            sourceUrl
+          }
+          priceIcon {
+            altText
+            sourceUrl
+          }
+          carIcon {
             altText
             sourceUrl
           }
@@ -285,6 +301,39 @@ export async function getSingleTour(slug) {
         title
         slug
         date
+        tourPreview {
+          titlePreview
+          pricePreview
+          typePreview
+          locationPreview
+          durationPreview
+          seasonPreview
+        }
+        tourGeneral {
+          tourCta
+          tourPictures {
+            tourPicture1 {
+              sourceUrl
+              altText
+            }
+             tourPicture2 {
+              sourceUrl
+              altText
+            }
+            tourPicture3 {
+              sourceUrl
+              altText
+            }
+            tourPicture4 {
+              sourceUrl
+              altText
+            }
+            tourPicture5 {
+              sourceUrl
+              altText
+            }
+          }
+        }
         featuredImage {
           node {
             sourceUrl
