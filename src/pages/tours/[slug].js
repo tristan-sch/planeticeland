@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { useRouter } from "next/router";
 import ErrorPage from "next/error";
 import Layout from "../../components/layout";
@@ -21,21 +22,27 @@ const Tour = ({ tour, settings, items, menus, footerlinks, homepage }) => {
   }
 
   return (
-    <Layout
-      settings={settings}
-      items={items}
-      menus={menus}
-      footerlinks={footerlinks}
-      homepage={homepage}
-    >
-      <SingleTourHeader
+    <>
+      <Head>
+        <title>{settings.title}</title>
+        <link rel="icon" href={items.favicon.sourceUrl} />
+      </Head>
+      <Layout
         settings={settings}
         items={items}
-        homepage={homepage}
         menus={menus}
-        tour={tour}
-      />
-    </Layout>
+        footerlinks={footerlinks}
+        homepage={homepage}
+      >
+        <SingleTourHeader
+          settings={settings}
+          items={items}
+          homepage={homepage}
+          menus={menus}
+          tour={tour}
+        />
+      </Layout>
+    </>
   );
 };
 

@@ -1,3 +1,4 @@
+import Head from "next/head";
 import Layout from "../components/layout";
 import Header from "../components/header";
 import Guarantees from "../components/guarantees";
@@ -33,6 +34,10 @@ export default function Home({
 }) {
   return (
     <>
+      <Head>
+        <title>{settings.title}</title>
+        <link rel="icon" href={items.favicon.sourceUrl} />
+      </Head>
       <Layout
         settings={settings}
         items={items}
