@@ -1,7 +1,9 @@
+import Head from "next/head";
 import Footer from "./footer";
 
 export default function Layout({
   children,
+  settings,
   items,
   menus,
   footerlinks,
@@ -9,6 +11,10 @@ export default function Layout({
 }) {
   return (
     <>
+      <Head>
+        <title>{settings.title}</title>
+        <link rel="icon" href={items.favicon.sourceUrl} />
+      </Head>
       <div className="min-h-screen">
         <main>{children}</main>
       </div>
