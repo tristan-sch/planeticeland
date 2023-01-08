@@ -1,6 +1,5 @@
 import Head from "next/head";
 import Footer from "./footer";
-import Favicon from "../../public/favicon.png";
 
 export default function Layout({
   children,
