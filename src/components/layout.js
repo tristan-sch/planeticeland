@@ -12,7 +12,7 @@ export default function Layout({
   return (
     <>
       <Head>
-        <title>{settings.title}</title>
+        <title>{settings ? settings.title : "Planet Iceland"}</title>
         <link rel="icon" href={items.favicon.sourceUrl} />
       </Head>
       <div className="min-h-screen">
