@@ -1,8 +1,8 @@
 import React from "react";
 import tw, { styled } from "twin.macro";
 import Image from "next/image";
+import { Wrapper, Container } from "../misc/Layouts.js";
 
-const Container = tw.div`relative bg-gray-200  -mb-8 px-8`;
 const FiveColumns = tw.div`max-w-screen-xl mx-auto py-16 lg:py-20 flex flex-wrap justify-between`;
 
 const Column = tw.div`md:w-1/5`;
@@ -29,143 +29,150 @@ const SocialLink = styled.a`
 `;
 const SocialLinkSpan = tw.span`font-secondary text-xs ml-2 text-gray-800`;
 
-const Footer = ({ items, menus, footerlinks, footer }) => {
+export default function Footer({ items, menus, footerlinks, homepage }) {
   return (
-    <Container>
-      <FiveColumns>
-        <WideColumn>
-          <LogoContainer>
-            <Link href={items.planetIcelandLogo.imageLink.imageLink}>
-              <Image
-                src={items.planetIcelandLogo.sourceUrl}
-                alt={items.planetIcelandLogo.altText}
-                width={133}
-                height={53}
-              />{" "}
-            </Link>
-          </LogoContainer>
-          <CompanyDescription>
-            <Link href={footer.phoneLink}>{footer.phone}</Link>
-            <br />
-            <Link href={footer.emailLink}>{footer.email}</Link>
-            <br />
-            <Link
-              href={footer.adressLink}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {footer.adress}
-            </Link>
-          </CompanyDescription>
-          <SocialLinksContainer>
-            <div>
-              <SocialLink
-                href={footer.footerIcon1.imageLink.imageLink}
+    <Wrapper>
+      <Container css={[tw`bg-gray-200 -mb-8 px-8 py-0`]}>
+        <FiveColumns>
+          <WideColumn>
+            <LogoContainer>
+              <Link href={items.planetIcelandLogo.imageLink.imageLink}>
+                <Image
+                  src={items.planetIcelandLogo.sourceUrl}
+                  alt={items.planetIcelandLogo.altText}
+                  width={133}
+                  height={53}
+                />{" "}
+              </Link>
+            </LogoContainer>
+            <CompanyDescription>
+              <Link href={homepage.footer.phoneLink}>
+                {homepage.footer.phone}
+              </Link>
+              <br />
+              <Link href={homepage.footer.emailLink}>
+                {homepage.footer.email}
+              </Link>
+              <br />
+              <Link
+                href={homepage.footer.adressLink}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Image
-                  src={footer.footerIcon1.sourceUrl}
-                  alt={footer.footerIcon1.altText}
-                  width={24}
-                  height={24}
-                />
-              </SocialLink>
-              <SocialLink
-                href={footer.footerIcon2.imageLink.imageLink}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Image
-                  src={footer.footerIcon2.sourceUrl}
-                  alt={footer.footerIcon2.altText}
-                  width={24}
-                  height={24}
-                />
-              </SocialLink>
-            </div>
-            <div>
-              <SocialLink
-                href={footer.footerIcon3.imageLink.imageLink}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Image
-                  src={footer.footerIcon3.sourceUrl}
-                  alt={footer.footerIcon3.altText}
-                  width={24}
-                  height={24}
-                />
-                <SocialLinkSpan>{footer.footerCaption}</SocialLinkSpan>
-              </SocialLink>
-            </div>
-          </SocialLinksContainer>
-        </WideColumn>
-        <LinksColumn>
-          <ColumnHeading>Menu</ColumnHeading>
-          {menus.nodes.map((menu, i) => (
-            <LinkList key={i}>
-              {menu.menuItems.edges.map(({ node }) => (
-                <div key={node.id}>
-                  <LinkListItem>
-                    <Link href={node.path} passHref>
-                      {node.label}
-                    </Link>
-                  </LinkListItem>
-                </div>
-              ))}
-            </LinkList>
-          ))}
-        </LinksColumn>
-
-        <LinksColumn>
-          <ColumnHeading>Useful Links</ColumnHeading>
-          {footerlinks.map((footerlink, i) => (
-            <LinkList key={i}>
-              <LinkListItem>
-                <Link
-                  href={footerlink.node.footerLinkUrl.footerLinkUrl}
+                {homepage.footer.adress}
+              </Link>
+            </CompanyDescription>
+            <SocialLinksContainer>
+              <div>
+                <SocialLink
+                  href={homepage.footer.footerIcon1.imageLink.imageLink}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {footerlink.node.title}
-                </Link>
-              </LinkListItem>
-            </LinkList>
-          ))}
-        </LinksColumn>
-        <ColumnWithLogos>
-          <ColumnImage>
-            <Link
-              href={items.footerLogo1.imageLink.imageLink}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Image
-                src={items.footerLogo1.sourceUrl}
-                alt={items.footerLogo1.altText}
-                width={100}
-                height={100}
-              />{" "}
-            </Link>
-          </ColumnImage>
-          <ColumnImage>
-            <Link
-              href={items.footerLogo2.imageLink.imageLink}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Image
-                src={items.footerLogo2.sourceUrl}
-                alt={items.footerLogo2.altText}
-                width={100}
-                height={100}
-              />
-            </Link>
-          </ColumnImage>
-        </ColumnWithLogos>
-      </FiveColumns>
-    </Container>
+                  <Image
+                    src={homepage.footer.footerIcon1.sourceUrl}
+                    alt={homepage.footer.footerIcon1.altText}
+                    width={24}
+                    height={24}
+                  />
+                </SocialLink>
+                <SocialLink
+                  href={homepage.footer.footerIcon2.imageLink.imageLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Image
+                    src={homepage.footer.footerIcon2.sourceUrl}
+                    alt={homepage.footer.footerIcon2.altText}
+                    width={24}
+                    height={24}
+                  />
+                </SocialLink>
+              </div>
+              <div>
+                <SocialLink
+                  href={homepage.footer.footerIcon3.imageLink.imageLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Image
+                    src={homepage.footer.footerIcon3.sourceUrl}
+                    alt={homepage.footer.footerIcon3.altText}
+                    width={24}
+                    height={24}
+                  />
+                  <SocialLinkSpan>
+                    {homepage.footer.footerCaption}
+                  </SocialLinkSpan>
+                </SocialLink>
+              </div>
+            </SocialLinksContainer>
+          </WideColumn>
+          <LinksColumn>
+            <ColumnHeading>Menu</ColumnHeading>
+            {menus.nodes.map((menu, i) => (
+              <LinkList key={i}>
+                {menu.menuItems.edges.map(({ node }) => (
+                  <div key={node.id}>
+                    <LinkListItem>
+                      <Link href={node.path} passHref>
+                        {node.label}
+                      </Link>
+                    </LinkListItem>
+                  </div>
+                ))}
+              </LinkList>
+            ))}
+          </LinksColumn>
+
+          <LinksColumn>
+            <ColumnHeading>Useful Links</ColumnHeading>
+            {footerlinks.map((footerlink, i) => (
+              <LinkList key={i}>
+                <LinkListItem>
+                  <Link
+                    href={footerlink.node.footerLinkUrl.footerLinkUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {footerlink.node.title}
+                  </Link>
+                </LinkListItem>
+              </LinkList>
+            ))}
+          </LinksColumn>
+          <ColumnWithLogos>
+            <ColumnImage>
+              <Link
+                href={items.footerLogo1.imageLink.imageLink}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Image
+                  src={items.footerLogo1.sourceUrl}
+                  alt={items.footerLogo1.altText}
+                  width={100}
+                  height={100}
+                />{" "}
+              </Link>
+            </ColumnImage>
+            <ColumnImage>
+              <Link
+                href={items.footerLogo2.imageLink.imageLink}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Image
+                  src={items.footerLogo2.sourceUrl}
+                  alt={items.footerLogo2.altText}
+                  width={100}
+                  height={100}
+                />
+              </Link>
+            </ColumnImage>
+          </ColumnWithLogos>
+        </FiveColumns>
+      </Container>
+    </Wrapper>
   );
-};
-export default Footer;
+}

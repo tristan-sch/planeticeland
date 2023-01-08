@@ -12,7 +12,7 @@ const NavLinks = tw.div`px-20 py-4 font-secondary`;
 const NavlinkItem = tw.div`text-2xl tracking-widest text-gray-100 hover:text-decoration hover:text-decoration-underline hover:text-decoration-wavy hover:underline-offset-large`;
 const BrandWrapper = tw.div`flex ml-10 mt-3 py-4`;
 
-const MobileNav = ({ menus, items }) => {
+export default function MobileNav({ menus, items }) {
   const [navShow, setNavShow] = useState(false);
 
   const onToggleNav = () => {
@@ -83,6 +83,4 @@ const MobileNav = ({ menus, items }) => {
       </div>
     </MobileNavWrapper>
   );
-};
-
-export default MobileNav;
+}

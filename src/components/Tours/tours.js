@@ -3,14 +3,10 @@ import Slider from "react-slick";
 import Image from "next/image";
 import tw, { styled } from "twin.macro";
 import { SectionHeading } from "../../misc/Headings.js";
-import DurationIcon from "../../../public/clock.svg";
-import SeasonIcon from "../../../public/sun.svg";
-import LocationIcon from "../../../public/map.svg";
 import { PrimaryButton as PrimaryButtonBase } from "../../misc/Buttons.js";
+import Link from "next/link";
+import { Wrapper, Container } from "../../misc/Layouts.js";
 
-//**CSS**
-const Wrapper = tw.div`min-h-screen px-8 overflow-hidden`;
-const Container = tw.div`relative`;
 const Content = tw.div`max-w-screen-xl mx-auto pt-16 pb-24`;
 //Heading
 const HeadingWithControl = tw.div`flex flex-col items-center sm:items-stretch sm:flex-row justify-between`;
@@ -35,7 +31,7 @@ const CardImage = styled.div`
   ${({ imageSrc }) => `
 background-image: url("${imageSrc}");
 `};
-  ${tw`h-64 bg-cover bg-center rounded`}
+  ${tw`h-64 bg-cover bg-center rounded-t-lg`}
 `;
 
 //Slider Content
@@ -44,8 +40,8 @@ const Card = tw.div`min-w-full min-h-full max-h-full`;
 const CardText = tw.div`mt-4 font-primary`;
 const CardHeader = tw.div`flex justify-between items-center min-h-10`;
 const CardType = tw.div`text-secondary-dark font-bold text-lg font-primary`;
-const CardPrice = tw.div`font-semibold text-sm text-gray-600 font-primary text-decoration text-decoration-underline text-decoration-wavy underline-offset-medium`;
-const CardPriceAmount = tw.span`font-bold text-gray-800 text-lg`;
+const CardPrice = tw.div`font-semibold text-gray-600 font-primary text-decoration text-decoration-underline text-decoration-wavy underline-offset-medium`;
+const CardPriceAmount = tw.span`font-bold text-gray-800 text-sm`;
 const CardTitle = tw.h5`text-xl mt-4 font-bold text-gray-800 min-h-16 min-w-64 font-secondary`;
 
 const CardMeta = styled.div`
@@ -59,69 +55,9 @@ const CardMetaFeature = styled.div`
 const CardMetaFeatureText = styled.span`
   ${tw`ml-2`}
 `;
-const CardAction = tw(PrimaryButtonBase)`w-full mt-8 bg-secondary-dark `;
+const CardAction = tw(PrimaryButtonBase)`w-full mt-8 bg-secondary-dark`;
 
-const Tours = ({
-  header,
-  items,
-  cards = [
-    {
-      imageSrc: `${header.header.heroImg.sourceUrl}`,
-      title: "Northern lights and icebergs in winter",
-      description:
-        "Lorem ipsum dolor sit amet, consectur dolori adipiscing elit, sed do eiusmod tempor nova incididunt ut labore et dolore magna aliqua.",
-      locationText: "South Coast",
-      pricingText: "3.000€",
-      duration: "5 days",
-      season: "summer",
-      type: "Self-drive-tour",
-    },
-    {
-      imageSrc: `${header.header.heroImg.sourceUrl}`,
-      title: "The wonders of Iceland in summer",
-      description:
-        "Lorem ipsum dolor sit amet, consectur dolori adipiscing elit, sed do eiusmod tempor nova incididunt ut labore et dolore magna aliqua.",
-      locationText: "Golden Circle",
-      pricingText: "3.000€",
-      duration: "5 days",
-      season: "summer",
-      type: "Self-drive-tour",
-    },
-    {
-      imageSrc: `${header.header.heroImg.sourceUrl}`,
-      title: "A long weekend in Reykjavík",
-      description:
-        "Lorem ipsum dolor sit amet, consectur dolori adipiscing elit, sed do eiusmod tempor nova incididunt ut labore et dolore magna aliqua.",
-      locationText: "Westfjords",
-      pricingText: "3.000€",
-      duration: "5 days",
-      season: "summer",
-      type: "Self-drive-tour",
-    },
-    {
-      imageSrc: `${header.header.heroImg.sourceUrl}`,
-      title: "Hiking tour in the heart of Iceland",
-      description:
-        "Lorem ipsum dolor sit amet, consectur dolori adipiscing elit, sed do eiusmod tempor nova incididunt ut labore et dolore magna aliqua.",
-      locationText: "Westfjords",
-      pricingText: "3.000€",
-      duration: "5 days",
-      season: "summer",
-      type: "Self-drive-tour",
-    },
-    {
-      imageSrc: `${header.header.heroImg.sourceUrl}`,
-      title: "Iceland tour with Klemmi and his poney 🤘",
-      description:
-        "Lorem ipsum dolor sit amet, consectur dolori adipiscing elit, sed do eiusmod tempor nova incididunt ut labore et dolore magna aliqua.",
-      locationText: "Westfjords",
-      pricingText: "3.000€",
-      duration: "5 days",
-      season: "summer",
-      type: "Self-drive-tour",
-    },
-  ],
-}) => {
+export default function Tours({ homepage, items, tours }) {
   // useState is used instead of useRef below because we want to re-render when sliderRef becomes available (not null)
   const [sliderRef, setSliderRef] = useState(null);
   const sliderSettings = {
@@ -150,12 +86,13 @@ const Tours = ({
       },
     ],
   };
+
   return (
-    <Wrapper>
+    <Wrapper css={[tw`px-8 overflow-hidden`]}>
       <Container>
         <Content>
           <HeadingWithControl>
-            <HeadingTitle>Our Tours</HeadingTitle>
+            <HeadingTitle>{homepage.tours.tourHeading}</HeadingTitle>
             <Controls>
               <ControlButton onClick={sliderRef?.slickPrev}>
                 <Image
@@ -179,49 +116,57 @@ const Tours = ({
           </HeadingWithControl>
 
           <CardSlider ref={setSliderRef} {...sliderSettings}>
-            {cards.map((card, index) => (
+            {tours.map((tour, index) => (
               <Card key={index}>
-                <CardImage imageSrc={card.imageSrc} />
+                <CardImage imageSrc={tour.node.featuredImage.node.sourceUrl} />
                 <CardText>
                   <CardHeader>
-                    <CardType>{card.type}</CardType>
+                    <CardType>{tour.node.tourPreview.typePreview}</CardType>
                     <CardPrice>
-                      <CardPriceAmount>{card.pricingText}</CardPriceAmount>
+                      <CardPriceAmount>
+                        {tour.node.tourPreview.pricePreview}
+                      </CardPriceAmount>
                     </CardPrice>
                   </CardHeader>
-                  <CardTitle>{card.title}</CardTitle>
+                  <CardTitle>{tour.node.tourPreview.titlePreview}</CardTitle>
                   <CardMeta>
                     <CardMetaFeature>
                       <Image
-                        src={LocationIcon}
-                        alt="Map-pin icon"
+                        src={items.locationIcon.sourceUrl}
+                        alt={items.locationIcon.altText}
                         width={14}
                         height={14}
                       />{" "}
                       <CardMetaFeatureText>
-                        {card.locationText}
+                        {tour.node.tourPreview.locationPreview}
                       </CardMetaFeatureText>
                     </CardMetaFeature>
                     <CardMetaFeature>
                       <Image
-                        src={DurationIcon}
-                        alt="Clock icon"
+                        src={items.durationIcon.sourceUrl}
+                        alt={items.durationIcon.altText}
                         width={14}
                         height={14}
                       />{" "}
-                      <CardMetaFeatureText>{card.duration}</CardMetaFeatureText>
+                      <CardMetaFeatureText>
+                        {tour.node.tourPreview.durationPreview}
+                      </CardMetaFeatureText>
                     </CardMetaFeature>
                     <CardMetaFeature>
                       <Image
-                        src={SeasonIcon}
-                        alt="Season icon"
+                        src={items.seasonIcon.sourceUrl}
+                        alt={items.seasonIcon.altText}
                         width={14}
                         height={14}
                       />{" "}
-                      <CardMetaFeatureText>{card.season}</CardMetaFeatureText>
+                      <CardMetaFeatureText>
+                        {tour.node.tourPreview.seasonPreview}
+                      </CardMetaFeatureText>
                     </CardMetaFeature>
                   </CardMeta>
-                  <CardAction>Book Now</CardAction>
+                  <Link href={`/tours/${tour.node.slug}`}>
+                    <CardAction>{tour.node.tourGeneral.tourCta}</CardAction>
+                  </Link>
                 </CardText>
               </Card>
             ))}
@@ -230,5 +175,4 @@ const Tours = ({
       </Container>
     </Wrapper>
   );
-};
-export default Tours;
+}

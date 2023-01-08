@@ -2,10 +2,9 @@ import React from "react";
 import tw from "twin.macro";
 import Image from "next/image";
 import Link from "next/link";
-import Nav from "../Nav/nav";
+import Nav from "./Nav/nav";
+import { HeaderWrapper, HeaderContainer } from "../misc/Layouts.js";
 
-const Wrapper = tw.div`min-h-full p-8 overflow-hidden`;
-const Container = tw.div`relative -mx-8 -mt-8`;
 const TwoColumn = tw.div`flex flex-col lg:flex-row bg-gray-100`;
 const LeftColumn = tw.div`ml-8 mr-8 xl:pl-10 py-8`;
 
@@ -28,29 +27,29 @@ const SecondaryAction = tw(
 const SecondaryActionText = tw.span`text-xl mr-4`;
 const HighlightedText = tw.span`text-primary-dark font-secondary`;
 
-const Header = ({ settings, items, header, menus }) => {
+export default function Header({ settings, items, homepage, menus }) {
   return (
-    <Wrapper>
-      <Container>
+    <HeaderWrapper>
+      <HeaderContainer>
         <TwoColumn>
           <LeftColumn>
             <Nav menus={menus} items={items} />
             <Content>
               <Heading>
                 {settings.title} <br />
-                <HighlightedText>{settings.description} </HighlightedText>
+                <HighlightedText>{settings.description}</HighlightedText>
               </Heading>
-              <Paragraph>{header.header.description}</Paragraph>
+              <Paragraph>{homepage.header.description}</Paragraph>
               <ActionsWrapper>
                 <PrimaryAction>
-                  <Link href={header.header.headerButtonLink1} passHref>
-                    <a>{header.header.headerButton1}</a>
+                  <Link href={homepage.header.headerButtonLink1} passHref>
+                    <a>{homepage.header.headerButton1}</a>
                   </Link>
                 </PrimaryAction>
                 <SecondaryAction>
-                  <Link href={header.header.headerButtonLink2} passHref>
+                  <Link href={homepage.header.headerButtonLink2} passHref>
                     <SecondaryActionText>
-                      <a>{header.header.headerButton2}</a>
+                      <a>{homepage.header.headerButton2}</a>
                     </SecondaryActionText>
                   </Link>
                   <Image
@@ -66,8 +65,8 @@ const Header = ({ settings, items, header, menus }) => {
           <RightColumn>
             <HeroContainer>
               <Image
-                src={header.header.heroImg.sourceUrl}
-                alt={header.header.heroImg.altText}
+                src={homepage.header.heroImg.sourceUrl}
+                alt={homepage.header.heroImg.altText}
                 layout="fill"
                 objectFit="cover"
                 priority="true"
@@ -75,9 +74,7 @@ const Header = ({ settings, items, header, menus }) => {
             </HeroContainer>
           </RightColumn>
         </TwoColumn>
-      </Container>
-    </Wrapper>
+      </HeaderContainer>
+    </HeaderWrapper>
   );
-};
-
-export default Header;
+}

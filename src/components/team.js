@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Slider from "react-slick";
 import Image from "next/image";
 import tw, { styled } from "twin.macro";
-import { TeamContainerWrapper, TeamContainer } from "../misc/Layouts.js";
+import { Wrapper, Container } from "../misc/Layouts.js";
 import { SectionHeading } from "../misc/Headings.js";
 import { SectionDescription } from "../misc/Typography.js";
 
@@ -32,7 +32,7 @@ const SliderCard = tw.div`mt-6 w-full sm:w-1/3 lg:w-1/4 flex flex-col items-cent
 const PrevButton = tw.span`px-8 py-3`;
 const NextButton = tw.span`px-8 py-3`;
 
-const Team = ({ items, team, staff }) => {
+export default function Team({ items, homepage, staff }) {
   // useState is used instead of useRef below because we want to re-render when sliderRef becomes available (not null)
   const [sliderRef, setSliderRef] = useState(null);
 
@@ -48,11 +48,11 @@ const Team = ({ items, team, staff }) => {
   };
 
   return (
-    <TeamContainerWrapper>
-      <TeamContainer>
+    <Wrapper css={[tw`bg-gray-100 mb-16`]}>
+      <Container css={[tw``]}>
         <HeadingContainer id="team">
-          <Heading>{team.teamHeading}</Heading>
-          <Description>{team.teamDescription}</Description>
+          <Heading>{homepage.team.teamHeading}</Heading>
+          <Description>{homepage.teamteamDescription}</Description>
         </HeadingContainer>
         <Cards>
           {staff.map((staff, i) => (
@@ -108,8 +108,7 @@ const Team = ({ items, team, staff }) => {
             ))}
           </Slider>
         </SliderWrapper>
-      </TeamContainer>
-    </TeamContainerWrapper>
+      </Container>
+    </Wrapper>
   );
-};
-export default Team;
+}

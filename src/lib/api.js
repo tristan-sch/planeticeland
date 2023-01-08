@@ -1,6 +1,6 @@
 const API_URL = process.env.WORDPRESS_API_URL;
 
-async function fetchAPI(query) {
+async function fetchAPI(query = "", { variables } = {}) {
   const headers = { "Content-Type": "application/json" };
 
   const res = await fetch(API_URL, {
@@ -8,6 +8,7 @@ async function fetchAPI(query) {
     headers,
     body: JSON.stringify({
       query,
+      variables,
     }),
   });
 
@@ -54,6 +55,18 @@ export async function getIconsAndLogos() {
             sourceUrl
           }
           chevronDownIcon {
+            altText
+            sourceUrl
+          }
+          durationIcon {
+            altText
+            sourceUrl
+          }
+          seasonIcon {
+            altText
+            sourceUrl
+          }
+          locationIcon {
             altText
             sourceUrl
           }
@@ -126,10 +139,10 @@ export async function getMenus() {
   return data?.menus;
 }
 
-export async function getHeader() {
+export async function getHomepage() {
   const data = await fetchAPI(
     `
-    query header {
+    query homepage {
       page(id: "/homepage", idType: URI) {
         header {
           headerButton1
@@ -142,16 +155,59 @@ export async function getHeader() {
             altText
           }
         }
+        team {
+          teamHeading
+          teamDescription
+        }
+        tours {
+          toursHeading
+        }
+        contact {
+          contactHeading
+          nameLabel
+          namePlaceholder
+          emailLabel
+          emailPlaceholder
+          messageLabel
+          messagePlaceholder
+          submitLabel
+        }
+        footer {
+          email
+          emailLink
+          phone
+          phoneLink
+          adress
+          adressLink
+          footerIcon1 {
+            altText
+            sourceUrl
+            imageLink {
+              imageLink
+            }
+          }
+          footerIcon2 {
+            altText
+            sourceUrl
+            imageLink {
+              imageLink
+            }
+          }
+          footerIcon3 {
+            altText
+            sourceUrl
+            imageLink {
+              imageLink
+            }
+          }
+          footerCaption
+        }
       }
     }
     `
   );
 
-  const header = data?.page.header;
-
-  return {
-    header,
-  };
+  return data?.page;
 }
 
 export async function getGuarantees() {
@@ -182,21 +238,69 @@ export async function getGuarantees() {
   return data?.guarantees.edges;
 }
 
-export async function getTeam() {
+export async function getTours() {
   const data = await fetchAPI(
     `
-    query team {
-      page(id: "/homepage", idType: URI) {
-        team {
-          teamHeading
-          teamDescription
+    query tours {
+      tours(first: 100) {
+        edges {
+          node {
+            slug
+            modified
+            id
+            title
+            featuredImage {
+              node {
+                altText
+                sourceUrl
+              }
+            }
+            content
+            tourGeneral {
+              tourCta
+            }
+            tourPreview {
+              titlePreview
+              pricePreview
+              typePreview
+              locationPreview
+              durationPreview
+              seasonPreview
+            }
+          }
         }
       }
     }
     `
   );
 
-  return data?.page.team;
+  return data?.tours.edges;
+}
+
+export async function getSingleTour(slug) {
+  const data = await fetchAPI(
+    `
+    query singleTour($id: ID!) {
+      tour(id: $id, idType: SLUG) {
+        title
+        slug
+        date
+        featuredImage {
+          node {
+            sourceUrl
+          }
+        } 
+        content
+      }
+    }
+  `,
+    {
+      variables: {
+        id: slug,
+      },
+    }
+  );
+  return data;
 }
 
 export async function getStaff() {
@@ -224,67 +328,6 @@ export async function getStaff() {
   );
 
   return data?.staff.edges;
-}
-
-export async function getContact() {
-  const data = await fetchAPI(
-    `
-    query contact {
-      page(id: "/homepage", idType: URI) {
-        contact {
-          contactHeading
-          contactDescription
-          emailPicto {
-            id
-            mediaItemUrl
-          }
-          phonePicto {
-            id
-            mediaItemUrl
-          }
-          adressPicto {
-            id
-            mediaItemUrl
-          }
-          email
-          emailUrl
-          phone
-          phoneUrl
-          adress
-          adressUrl
-          logo1 {
-            sourceUrl
-            altText
-            description
-          }
-          logo1Link
-            logo2 {
-            sourceUrl
-            altText
-            description
-          }
-          logo2Link
-          usefulLinks {
-            usefulLink1
-            usefulLink1Link
-            usefulLink2
-            usefulLink2Link
-            usefulLink3
-            usefulLink3Link
-            usefulLink4
-            usefulLink4Link
-          }
-        }
-      }
-    }
-    `
-  );
-
-  const contact = data?.page.contact;
-
-  return {
-    contact,
-  };
 }
 
 export async function getFaq() {
@@ -356,74 +399,30 @@ export async function getFooterLinks() {
   return data?.footerlinks.edges;
 }
 
-export async function getFooter() {
+export async function getErrorPage() {
   const data = await fetchAPI(
     `
-    query footer {
-      page(id: "/homepage", idType: URI) {
-        footer {
-          email
-          emailLink
-          phone
-          phoneLink
-          adress
-          adressLink
-          footerIcon1 {
-            altText
+    query errorPage {
+      page(id: "/error", idType: URI) {
+        errorPage {
+          heading
+          subheading
+          description
+          button
+          buttonLink
+          image {
             sourceUrl
-            imageLink {
-              imageLink
-            }
-          }
-          footerIcon2 {
             altText
-            sourceUrl
-            imageLink {
-              imageLink
-            }
           }
-          footerIcon3 {
-            altText
-            sourceUrl
-            imageLink {
-              imageLink
-            }
-          }
-          footerCaption
         }
       }
     }
     `
   );
 
-  return data?.page.footer;
-}
+  const errorPage = data?.page.errorPage;
 
-export async function sendMail(subject, body, mutationId = "contact") {
-  const fromAddress = "schmale.tristan@gmail.com";
-  const toAddress = "tristan_55@gmail.com";
-  const data = await fetchAPI(
-    `
-		mutation SendEmail($input: SendEmailInput!) {
-			sendEmail(input: $input) {
-				message
-				origin
-				sent
-			}
-		}
-	`,
-    {
-      variables: {
-        input: {
-          clientMutationId: mutationId,
-          from: fromAddress,
-          to: toAddress,
-          body: body,
-          subject: subject,
-        },
-      },
-    }
-  );
-
-  return data?.sendEmail;
+  return {
+    errorPage,
+  };
 }

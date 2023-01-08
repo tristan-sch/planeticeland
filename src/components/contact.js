@@ -2,9 +2,7 @@ import React, { useRef } from "react";
 import emailjs from "@emailjs/browser";
 import tw from "twin.macro";
 // import ReCAPTCHA from "react-google-recaptcha";
-
-const Container = tw.div`relative`;
-const Content = tw.div`max-w-screen-xl mx-auto py-20 lg:py-24`;
+import { Wrapper, Container } from "../misc/Layouts.js";
 
 const FormContainer = tw.div`p-10 sm:p-12 md:p-16 bg-secondary-dark text-gray-100 rounded-lg relative`;
 const Form = tw.div`mt-4`;
@@ -19,7 +17,7 @@ const TextArea = tw.textarea`h-full resize-none w-full bg-transparent text-gray-
 
 const SubmitButton = tw.button`w-full sm:w-32 mt-6 py-3 bg-gray-100 text-secondary-dark rounded font-bold tracking-wide shadow-lg uppercase text-sm transition duration-300 transform focus:outline-none focus:shadow-outline hover:bg-primary-dark hover:text-gray-100 hocus:-translate-y-px hocus:shadow-xl`;
 
-const Contact = () => {
+export default function Contact({ homepage }) {
   const form = useRef();
 
   const sendEmail = (e) => {
@@ -42,46 +40,44 @@ const Contact = () => {
       );
   };
 
-  console.log("test");
-
   return (
-    <Container id="contact">
-      <Content>
+    <Wrapper id="contact">
+      <Container>
         <FormContainer>
           <div tw="mx-auto max-w-4xl">
-            <Headline2>Contact us</Headline2>
+            <Headline2>{homepage.contact.contactHeading}</Headline2>
             <Form>
               <form ref={form} onSubmit={sendEmail}>
                 <TwoColumn>
                   <Column>
                     <InputContainer>
-                      <Label>Your Name</Label>
+                      <Label>{homepage.contact.nameLabel}</Label>
                       <Input
                         type="text"
                         name="from_name"
                         id="from_name"
-                        placeholder="E.g. John Doe"
+                        placeholder={homepage.contact.namePlaceholder}
                         required
                       />
                     </InputContainer>
                     <InputContainer>
-                      <Label>Your Email Address</Label>
+                      <Label>{homepage.contact.emailLabel}</Label>
                       <Input
                         type="email"
                         id="email"
                         name="email"
-                        placeholder="E.g. john@mail.com"
+                        placeholder={homepage.contact.emailPlaceholder}
                         required
                       />
                     </InputContainer>
                   </Column>
                   <Column>
                     <InputContainer tw="flex-1">
-                      <Label>Your Message</Label>
+                      <Label>{homepage.contact.messageLabel}</Label>
                       <TextArea
                         name="message"
                         id="emmessageail"
-                        placeholder="E.g. Details about your event"
+                        placeholder={homepage.contact.messagePlaceholder}
                       />
                     </InputContainer>
                   </Column>
@@ -90,14 +86,13 @@ const Contact = () => {
                   sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITEKEY}
                 /> */}
                 <SubmitButton type="submit" value="Send">
-                  Submit
+                  {homepage.contact.submitLabel}
                 </SubmitButton>
               </form>
             </Form>
           </div>
         </FormContainer>
-      </Content>
-    </Container>
+      </Container>
+    </Wrapper>
   );
-};
-export default Contact;
+}

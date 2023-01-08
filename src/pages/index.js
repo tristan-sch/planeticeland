@@ -1,89 +1,87 @@
-import Head from "next/head";
-import Header from "../components/Header/header";
+import Layout from "../components/layout";
+import Header from "../components/header";
 import Guarantees from "../components/guarantees";
 import Tours from "../components/Tours/tours";
+import SingleTour from "../components/Tours/singleTour";
 import Team from "../components/team";
 import Faq from "../components/faq";
 import Contact from "../components/contact";
-import Footer from "../components/footer";
 
 import {
   getSettings,
   getIconsAndLogos,
-  getHeader,
+  getHomepage,
   getMenus,
   getGuarantees,
-  getTeam,
+  getTours,
   getStaff,
   getFaq,
   getQuestions,
   getFooterLinks,
-  getFooter,
 } from "../lib/api";
 
-const Home = ({
+export default function Home({
   settings,
   items,
-  header,
+  homepage,
   menus,
   guarantees,
-  team,
+  tours,
   staff,
   faq,
   questions,
   footerlinks,
-  footer,
-}) => {
+}) {
   return (
     <>
-      <Head>
-        <title>{settings.title}</title>
-        <link rel="icon" href={items.favicon.sourceUrl} />
-      </Head>
-      <Header settings={settings} items={items} header={header} menus={menus} />
-      <Guarantees guarantees={guarantees} />
-      <Tours header={header} items={items} />
-      <Team items={items} team={team} staff={staff} />
-      <Faq items={items} faq={faq} questions={questions} />
-      <Contact />
-      <Footer
+      <Layout
+        settings={settings}
         items={items}
         menus={menus}
         footerlinks={footerlinks}
-        footer={footer}
-      />
+        homepage={homepage}
+      >
+        <Header
+          settings={settings}
+          items={items}
+          homepage={homepage}
+          menus={menus}
+        />
+        <Guarantees guarantees={guarantees} />
+        <Tours items={items} tours={tours} homepage={homepage} />
+        {/* <SingleTour items={items} /> */}
+        <Team items={items} homepage={homepage} staff={staff} />
+        <Faq items={items} faq={faq} questions={questions} />
+        <Contact homepage={homepage} />
+      </Layout>
     </>
   );
-};
-
-export default Home;
+}
 
 export async function getStaticProps() {
   const settings = await getSettings();
+  const homepage = await getHomepage();
   const items = await getIconsAndLogos();
-  const header = await getHeader();
   const menus = await getMenus();
   const guarantees = await getGuarantees();
-  const team = await getTeam();
+  const tours = await getTours();
   const staff = await getStaff();
   const faq = await getFaq();
   const questions = await getQuestions();
   const footerlinks = await getFooterLinks();
-  const footer = await getFooter();
 
   return {
     props: {
       settings,
       items,
-      header,
+      homepage,
       menus,
       guarantees,
-      team,
+      tours,
       staff,
       faq,
       questions,
       footerlinks,
-      footer,
     },
     revalidate: 10,
   };

@@ -17,7 +17,7 @@ hocus:text-primary-dark cursor-pointer font-secondary
 hover:text-decoration hover:text-decoration-underline hover:text-decoration-wavy hover:underline-offset-large
 `;
 
-export const Nav = ({ menus, items }) => {
+export default function Nav({ menus, items }) {
   return (
     <NavWrapper>
       <DesktopNavLinksWrapper>
@@ -50,6 +50,4 @@ export const Nav = ({ menus, items }) => {
       <MobileNav menus={menus} items={items} />
     </NavWrapper>
   );
-};
-
-export default Nav;
+}

@@ -3,9 +3,7 @@ import { motion } from "framer-motion";
 import tw, { styled } from "twin.macro";
 import Image from "next/image";
 import { SectionHeading } from "../misc/Headings.js";
-
-const Container = tw.div`relative`;
-const Content = tw.div`max-w-screen-xl mx-auto py-16 lg:py-24`;
+import { Container, Wrapper } from "../misc/Layouts.js";
 
 const TwoColumn = tw.div`flex`;
 const Column = tw.div``;
@@ -26,7 +24,7 @@ const Answer = motion(
   tw.dd`pointer-events-none text-sm sm:text-base leading-relaxed font-primary pr-24`
 );
 
-const Faq = ({ items, faq, questions }) => {
+export default function Faq({ items, faq, questions }) {
   const [activeQuestionIndex, setActiveQuestionIndex] = useState(null);
 
   const toggleQuestion = (questionIndex) => {
@@ -35,8 +33,8 @@ const Faq = ({ items, faq, questions }) => {
   };
 
   return (
-    <Container id="faq">
-      <Content>
+    <Wrapper id="faq">
+      <Container>
         <TwoColumn>
           <Column tw="hidden lg:block w-5/12 flex-shrink-0">
             <ImageWrapper>
@@ -109,8 +107,7 @@ const Faq = ({ items, faq, questions }) => {
             </FAQContent>
           </Column>
         </TwoColumn>
-      </Content>
-    </Container>
+      </Container>
+    </Wrapper>
   );
-};
-export default Faq;
+}
