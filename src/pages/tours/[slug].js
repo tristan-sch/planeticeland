@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import ErrorPage from "next/error";
 import Layout from "../../components/layout";
 import SingleTourHeader from "../../components/Tours/SingleTour/singleTourHeader";
+import SingleTourItinerary from "../../components/Tours/SingleTour/singleTourItinerary";
 
 import {
   getTours,
@@ -11,9 +12,20 @@ import {
   getHomepage,
   getMenus,
   getFooterLinks,
+  getFaq,
+  getQuestions,
 } from "../../lib/api";
 
-const Tour = ({ tour, settings, items, menus, footerlinks, homepage }) => {
+const Tour = ({
+  tour,
+  settings,
+  items,
+  menus,
+  footerlinks,
+  homepage,
+  faq,
+  questions,
+}) => {
   const router = useRouter();
 
   if (!router.isFallback && !tour?.slug) {
@@ -39,6 +51,13 @@ const Tour = ({ tour, settings, items, menus, footerlinks, homepage }) => {
             menus={menus}
             tour={tour}
           />
+          <SingleTourItinerary
+            items={items}
+            faq={faq}
+            questions={questions}
+            homepage={homepage}
+            tour={tour}
+          />
         </Layout>
       )}
     </>
@@ -54,6 +73,8 @@ export const getStaticProps = async ({ params }) => {
   const items = await getIconsAndLogos();
   const menus = await getMenus();
   const footerlinks = await getFooterLinks();
+  const faq = await getFaq();
+  const questions = await getQuestions();
 
   return {
     props: {
@@ -63,6 +84,8 @@ export const getStaticProps = async ({ params }) => {
       homepage,
       menus,
       footerlinks,
+      faq,
+      questions,
     },
     revalidate: 10,
   };

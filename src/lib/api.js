@@ -177,6 +177,8 @@ export async function getHomepage() {
         }
         tours {
           toursHeading
+          toursCta
+          itineraryTitle
         }
         contact {
           contactHeading
@@ -311,6 +313,10 @@ export async function getSingleTour(slug) {
         }
         tourGeneral {
           tourCta
+          googleMaps {
+            googleMapsIframe
+            googleMapsLink
+          }
           tourPictures {
             tourPicture1 {
               sourceUrl
@@ -332,6 +338,38 @@ export async function getSingleTour(slug) {
               sourceUrl
               altText
             }
+          }
+          tourDays {
+            tourDay1
+            tourDay1Content
+            tourDay2
+            tourDay2Content
+            tourDay3
+            tourDay3Content
+            tourDay4
+            tourDay4Content
+            tourDay5
+            tourDay5Content
+            tourDay6
+            tourDay6Content
+            tourDay7
+            tourDay7Content
+            tourDay8
+            tourDay8Content
+            tourDay9
+            tourDay9Content
+            tourDay10
+            tourDay10Content
+            tourDay11
+            tourDay11Content
+            tourDay12
+            tourDay12Content
+            tourDay13
+            tourDay13Content
+            tourDay14
+            tourDay14Content
+            tourDay15
+            tourDay15Content
           }
         }
         featuredImage {

@@ -29,9 +29,9 @@ const HighlightedText = tw.span`text-primary-dark font-secondary`;
 
 export default function Header({ settings, items, homepage, menus }) {
   return (
-    <Wrapper css={[tw`bg-gray-100`]}>
+    <Wrapper css={[tw`2xl:bg-gray-100`]}>
       <HeaderWrapper>
-        <HeaderContainer>
+        <HeaderContainer css={[tw`bg-gray-100`]}>
           <TwoColumn>
             <LeftColumn>
               <Nav menus={menus} items={items} />

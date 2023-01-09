@@ -9,13 +9,10 @@ import { PrimaryButton } from "../../../misc/Buttons";
 import SingleTourNav from "./singleTourNav";
 // import "slick-carousel/slick/slick.css";
 
-const TestimonialsContainer = tw.div`mt-8 lg:mt-0`;
-const Testimonials = styled.div``;
-const Testimonial = tw.div`max-w-md lg:max-w-none mx-auto lg:mx-0 flex flex-col items-center lg:items-stretch lg:flex-row`;
+const SingleTourHeaderContainer = tw.div`mt-8 lg:mt-0`;
+const SingleTour = tw.div`max-w-md lg:max-w-none mx-auto lg:mx-0 flex flex-col items-center lg:items-stretch lg:flex-row`;
 
-const TestimonialImageSlider = tw(Slider)`w-full lg:w-5/12 flex-shrink-0 `;
-const TestimonialTextSlider = tw(Slider)``;
-const TestimonialText = tw.div`outline-none`;
+const TourPicturesSlider = tw(Slider)`w-full lg:w-5/12 flex-shrink-0 `;
 
 const ImageAndControlContainer = tw.div`relative outline-none`;
 const TourImage = styled.div`
@@ -67,11 +64,12 @@ export default function SingleTourHeader({
   tourPictures = null,
   textOnLeft = false,
 }) {
-  /*
-   * You can modify the testimonials shown by modifying the array below or passing in the testimonials prop above
-   * You can add or remove objects from the array as you need.
-   */
   const defaultTourPictures = [
+    {
+      imageSrc: tour.tourGeneral.tourPictures.tourPicture1
+        ? null
+        : tour.featuredImage.node.sourceUrl,
+    },
     {
       imageSrc: tour.tourGeneral.tourPictures.tourPicture1
         ? tour.tourGeneral.tourPictures.tourPicture1.sourceUrl
@@ -104,149 +102,135 @@ export default function SingleTourHeader({
 
   // useState is used instead of useRef below because we want to re-render when sliderRef becomes available (not null)
   const [imageSliderRef, setImageSliderRef] = useState(null);
-  const [textSliderRef, setTextSliderRef] = useState(null);
 
   return (
     <Wrapper>
       <Container css={[tw`p-8`]}>
         <SingleTourNav menus={menus} items={items} tour={tour} />
         <HeadingTitleMobile>{tour.title}</HeadingTitleMobile>
-        <TestimonialsContainer>
-          <Testimonials>
-            <Testimonial>
-              <TestimonialImageSlider
-                arrows={false}
-                ref={setImageSliderRef}
-                asNavFor={textSliderRef}
-                fade={true}
-              >
-                {tourPictures
-                  .filter((e) => e.imageSrc !== null)
-                  .map((tourPicture, index) => (
-                    <ImageAndControlContainer key={index}>
-                      <TourImage imageSrc={tourPicture.imageSrc} />
-                      <ControlContainer>
-                        <ControlButton onClick={imageSliderRef?.slickPrev}>
-                          <Image
-                            css={[tw`rotate-90`]}
-                            src={items.chevronDownIconWhite.sourceUrl}
-                            alt={items.chevronDownIconWhite.altText}
-                            width={12}
-                            height={12}
-                          />
-                        </ControlButton>
-                        <ControlButton onClick={imageSliderRef?.slickNext}>
-                          <Image
-                            css={[tw`-rotate-90`]}
-                            src={items.chevronDownIconWhite.sourceUrl}
-                            alt={items.chevronDownIconWhite.altText}
-                            width={12}
-                            height={12}
-                          />
-                        </ControlButton>
-                      </ControlContainer>
-                    </ImageAndControlContainer>
-                  ))}
-              </TestimonialImageSlider>
-              <TextContainer textOnLeft={textOnLeft}>
-                <HeadingTitle>{tour.title}</HeadingTitle>
-                <Paragraph
-                  dangerouslySetInnerHTML={{
-                    __html: tour.content,
-                  }}
-                />
-                <CardMetaWrapper>
-                  <CardMeta>
-                    <CardMetaFeature>
-                      <Image
-                        src={items.carIcon.sourceUrl}
-                        alt={items.carIcon.altText}
-                        width={14}
-                        height={14}
-                      />
-                      <CardMetaFeatureText>
-                        {tour.tourPreview.typePreview}
-                      </CardMetaFeatureText>
-                    </CardMetaFeature>
-                    <CardMetaFeature>
-                      <Image
-                        src={items.durationIcon.sourceUrl}
-                        alt={items.durationIcon.altText}
-                        width={14}
-                        height={14}
-                      />
-                      <CardMetaFeatureText>
-                        {tour.tourPreview.durationPreview}
-                      </CardMetaFeatureText>
-                    </CardMetaFeature>
-                  </CardMeta>
-                  <CardMeta>
-                    <CardMetaFeature>
-                      <Image
-                        src={items.locationIcon.sourceUrl}
-                        alt={items.locationIcon.altText}
-                        width={14}
-                        height={14}
-                      />
-                      <CardMetaFeatureText>
-                        {tour.tourPreview.locationPreview}
-                      </CardMetaFeatureText>
-                    </CardMetaFeature>
-                    <CardMetaFeature>
-                      <Image
-                        src={items.seasonIcon.sourceUrl}
-                        alt={items.seasonIcon.altText}
-                        width={14}
-                        height={14}
-                      />
-                      <CardMetaFeatureText>
-                        {tour.tourPreview.seasonPreview}
-                      </CardMetaFeatureText>
-                    </CardMetaFeature>
-                  </CardMeta>
-                  <CardMeta>
-                    <CardMetaFeature>
-                      <Image
-                        src={items.priceIcon.sourceUrl}
-                        alt={items.priceIcon.altText}
-                        width={14}
-                        height={14}
-                      />
-                      <CardMetaFeatureText>
-                        {tour.tourPreview.pricePreview}
-                      </CardMetaFeatureText>
-                    </CardMetaFeature>
-                  </CardMeta>
-                </CardMetaWrapper>
-
-                <TestimonialTextSlider
-                  arrows={false}
-                  ref={setTextSliderRef}
-                  asNavFor={imageSliderRef}
-                  fade={true}
-                >
-                  <TestimonialText>
-                    <ActionsWrapper>
-                      <SecondaryAction>
-                        <Link href="/" passHref>
-                          <SecondaryActionText>
-                            <a>{tour.tourGeneral.tourCta}</a>
-                          </SecondaryActionText>
-                        </Link>
+        <SingleTourHeaderContainer>
+          <SingleTour>
+            <TourPicturesSlider
+              arrows={false}
+              ref={setImageSliderRef}
+              fade={true}
+            >
+              {tourPictures
+                .filter((e) => e.imageSrc !== null)
+                .map((tourPicture, index) => (
+                  <ImageAndControlContainer key={index}>
+                    <TourImage imageSrc={tourPicture.imageSrc} />
+                    <ControlContainer>
+                      <ControlButton onClick={imageSliderRef?.slickPrev}>
                         <Image
-                          src={items.doubleChevronDownIcon.sourceUrl}
-                          alt={items.doubleChevronDownIcon.altText}
-                          width={14}
-                          height={14}
+                          css={[tw`rotate-90`]}
+                          src={items.chevronDownIconWhite.sourceUrl}
+                          alt={items.chevronDownIconWhite.altText}
+                          width={12}
+                          height={12}
                         />
-                      </SecondaryAction>
-                    </ActionsWrapper>
-                  </TestimonialText>
-                </TestimonialTextSlider>
-              </TextContainer>
-            </Testimonial>
-          </Testimonials>
-        </TestimonialsContainer>
+                      </ControlButton>
+                      <ControlButton onClick={imageSliderRef?.slickNext}>
+                        <Image
+                          css={[tw`-rotate-90`]}
+                          src={items.chevronDownIconWhite.sourceUrl}
+                          alt={items.chevronDownIconWhite.altText}
+                          width={12}
+                          height={12}
+                        />
+                      </ControlButton>
+                    </ControlContainer>
+                  </ImageAndControlContainer>
+                ))}
+            </TourPicturesSlider>
+            <TextContainer textOnLeft={textOnLeft}>
+              <HeadingTitle>{tour.title}</HeadingTitle>
+              <Paragraph
+                dangerouslySetInnerHTML={{
+                  __html: tour.content,
+                }}
+              />
+              <CardMetaWrapper>
+                <CardMeta>
+                  <CardMetaFeature>
+                    <Image
+                      src={items.carIcon.sourceUrl}
+                      alt={items.carIcon.altText}
+                      width={14}
+                      height={14}
+                    />
+                    <CardMetaFeatureText>
+                      {tour.tourPreview.typePreview}
+                    </CardMetaFeatureText>
+                  </CardMetaFeature>
+                  <CardMetaFeature>
+                    <Image
+                      src={items.durationIcon.sourceUrl}
+                      alt={items.durationIcon.altText}
+                      width={14}
+                      height={14}
+                    />
+                    <CardMetaFeatureText>
+                      {tour.tourPreview.durationPreview}
+                    </CardMetaFeatureText>
+                  </CardMetaFeature>
+                </CardMeta>
+                <CardMeta>
+                  <CardMetaFeature>
+                    <Image
+                      src={items.locationIcon.sourceUrl}
+                      alt={items.locationIcon.altText}
+                      width={14}
+                      height={14}
+                    />
+                    <CardMetaFeatureText>
+                      {tour.tourPreview.locationPreview}
+                    </CardMetaFeatureText>
+                  </CardMetaFeature>
+                  <CardMetaFeature>
+                    <Image
+                      src={items.seasonIcon.sourceUrl}
+                      alt={items.seasonIcon.altText}
+                      width={14}
+                      height={14}
+                    />
+                    <CardMetaFeatureText>
+                      {tour.tourPreview.seasonPreview}
+                    </CardMetaFeatureText>
+                  </CardMetaFeature>
+                </CardMeta>
+                <CardMeta>
+                  <CardMetaFeature>
+                    <Image
+                      src={items.priceIcon.sourceUrl}
+                      alt={items.priceIcon.altText}
+                      width={14}
+                      height={14}
+                    />
+                    <CardMetaFeatureText>
+                      {tour.tourPreview.pricePreview}
+                    </CardMetaFeatureText>
+                  </CardMetaFeature>
+                </CardMeta>
+              </CardMetaWrapper>
+              <ActionsWrapper>
+                <SecondaryAction>
+                  <Link href="/" passHref>
+                    <SecondaryActionText>
+                      <a>{tour.tourGeneral.tourCta}</a>
+                    </SecondaryActionText>
+                  </Link>
+                  <Image
+                    src={items.doubleChevronDownIcon.sourceUrl}
+                    alt={items.doubleChevronDownIcon.altText}
+                    width={14}
+                    height={14}
+                  />
+                </SecondaryAction>
+              </ActionsWrapper>
+            </TextContainer>
+          </SingleTour>
+        </SingleTourHeaderContainer>
       </Container>
     </Wrapper>
   );

@@ -165,7 +165,7 @@ export default function Tours({ homepage, items, tours }) {
                     </CardMetaFeature>
                   </CardMeta>
                   <Link href={`/tours/${tour.node.slug}`}>
-                    <CardAction>{tour.node.tourGeneral.tourCta}</CardAction>
+                    <CardAction>{homepage.tours.toursCta}</CardAction>
                   </Link>
                 </CardText>
               </Card>
