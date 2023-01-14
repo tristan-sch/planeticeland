@@ -10,7 +10,7 @@ import {
   getSettings,
   getIconsAndLogos,
   getHomepage,
-  getMenus,
+  getMainMenu,
   getGuarantees,
   getTours,
   getStaff,
@@ -23,7 +23,7 @@ export default function Home({
   settings,
   items,
   homepage,
-  menus,
+  mainMenu,
   guarantees,
   tours,
   staff,
@@ -36,7 +36,7 @@ export default function Home({
       <Layout
         settings={settings}
         items={items}
-        menus={menus}
+        mainMenu={mainMenu}
         footerlinks={footerlinks}
         homepage={homepage}
       >
@@ -44,7 +44,7 @@ export default function Home({
           settings={settings}
           items={items}
           homepage={homepage}
-          menus={menus}
+          mainMenu={mainMenu}
         />
         <Guarantees guarantees={guarantees} />
         <Tours items={items} tours={tours} homepage={homepage} />
@@ -60,7 +60,7 @@ export async function getStaticProps() {
   const settings = await getSettings();
   const homepage = await getHomepage();
   const items = await getIconsAndLogos();
-  const menus = await getMenus();
+  const mainMenu = await getMainMenu();
   const guarantees = await getGuarantees();
   const tours = await getTours();
   const staff = await getStaff();
@@ -73,7 +73,7 @@ export async function getStaticProps() {
       settings,
       items,
       homepage,
-      menus,
+      mainMenu,
       guarantees,
       tours,
       staff,

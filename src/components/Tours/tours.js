@@ -55,7 +55,9 @@ const CardMetaFeature = styled.div`
 const CardMetaFeatureText = styled.span`
   ${tw`ml-2`}
 `;
-const CardAction = tw(PrimaryButtonBase)`w-full mt-8 bg-secondary-dark`;
+const CardAction = tw(
+  PrimaryButtonBase
+)`w-full mt-8 bg-secondary-dark rounded-lg`;
 
 export default function Tours({ homepage, items, tours }) {
   // useState is used instead of useRef below because we want to re-render when sliderRef becomes available (not null)
@@ -88,7 +90,7 @@ export default function Tours({ homepage, items, tours }) {
   };
 
   return (
-    <Wrapper css={[tw`px-8 overflow-hidden`]} id="team">
+    <Wrapper css={[tw`px-8 overflow-hidden`]} id="tours">
       <Container>
         <Content>
           <HeadingWithControl>

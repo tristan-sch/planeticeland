@@ -2,18 +2,20 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import tw, { styled } from "twin.macro";
 import Image from "next/image";
-import { SectionHeading } from "../../../misc/Headings.js";
+import { SectionHeading, SectionSubheading } from "../../../misc/Headings.js";
 import { Container, Wrapper } from "../../../misc/Layouts.js";
 import Link from "next/link";
 
-const TwoColumn = tw.div`flex`;
+const TwoColumn = tw.div`flex justify-center items-center`;
 const Column = tw.div``;
-const IframeWrapper = tw.div`relative shadow hidden lg:block rounded h-144 bg-center`;
-const FAQContent = tw.div`lg:mr-24`;
+const IframeWrapper = tw.div`relative shadow hidden lg:block rounded  bg-center`;
+const ItineraryContent = tw.div`lg:mr-24`;
 const Heading = tw(SectionHeading)`lg:text-left text-secondary-dark`;
-const HighlightedText = tw.span`text-primary-dark font-secondary text-2xl hover:text-decoration hover:text-decoration-underline hover:text-decoration-wavy hover:underline-offset-medium cursor-pointer`;
+const Subheading = tw(
+  SectionSubheading
+)`text-center lg:text-left hover:text-decoration hover:text-decoration-underline hover:text-decoration-wavy hover:underline-offset-medium cursor-pointer`;
 const Description = tw.p`max-w-xl text-center mx-auto lg:mx-0 lg:text-left lg:max-w-none leading-relaxed text-sm sm:text-base lg:text-lg font-medium mt-6 lg:pr-24 text-gray-800 font-primary`;
-const FAQSContainer = tw.dl`mt-12`;
+const DaysContainer = tw.dl`mt-12`;
 const FAQ = tw.div`cursor-pointer mt-8 select-none bg-gray-200 lg:bg-transparent px-8 py-4 lg:p-0 rounded-lg lg:rounded-none`;
 const Question = tw.dt`flex justify-between items-center`;
 const QuestionText = tw.span`text-lg lg:text-xl font-normal font-secondary`;
@@ -160,31 +162,36 @@ export default function SingleTourItinerary({
     else setActiveQuestionIndex(questionIndex);
   };
 
-  console.log(tour.tourGeneral.tourCta);
-
   return (
-    <Wrapper id="faq">
+    <Wrapper id="itinerary">
       <Container>
         <TwoColumn>
           <Column>
-            <FAQContent>
-              <Heading>
-                {homepage.tours.itineraryTitle}{" "}
-                {tour.tourGeneral.googleMaps.googleMapsLink && (
-                  <Link
-                    href={tour.tourGeneral.googleMaps.googleMapsLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <a>
-                      {" "}
-                      <HighlightedText>Maps Itinerary</HighlightedText>
-                    </a>
-                  </Link>
-                )}
-              </Heading>
+            <ItineraryContent>
+              <Heading>{homepage.tours.itineraryTitle}</Heading>
+              {/* //Hydration Isssue??*/}
+              {tour.tourGeneral.googleMaps.googleMapsLink && (
+                <Link
+                  href={tour.tourGeneral.googleMaps.googleMapsLink}
+                  passHref
+                >
+                  <a target="_blank" rel="noopener noreferrer">
+                    <Subheading>
+                      <Image
+                        src={items.locationIcon.sourceUrl}
+                        alt={items.locationIcon.altText}
+                        width={24}
+                        height={24}
+                      />{" "}
+                      {homepage.tours.itinerarySubtitle
+                        ? homepage.tours.itinerarySubtitle
+                        : "Itinerary"}
+                    </Subheading>
+                  </a>
+                </Link>
+              )}
               <Description>{faq.faq.faqDescription}</Description>
-              <FAQSContainer>
+              <DaysContainer>
                 {dayTours
                   .filter((e) => e.tourDay !== null)
                   .map((dayTour, index) => (
@@ -208,7 +215,6 @@ export default function SingleTourItinerary({
                             />
                           ) : (
                             <Image
-                              css={[tw``]}
                               src={items.chevronDownIconWhite.sourceUrl}
                               alt={items.chevronDownIconWhite.altText}
                               width={12}
@@ -247,8 +253,8 @@ export default function SingleTourItinerary({
                       </Answer>
                     </FAQ>
                   ))}
-              </FAQSContainer>
-            </FAQContent>
+              </DaysContainer>
+            </ItineraryContent>
           </Column>{" "}
           <Column tw="hidden lg:block w-5/12 flex-shrink-0">
             <IframeWrapper>
@@ -256,8 +262,8 @@ export default function SingleTourItinerary({
                 <iframe
                   css={[tw`rounded border-0`]}
                   src={tour.tourGeneral.googleMaps.googleMapsIframe}
-                  width="535"
-                  height="580"
+                  width="400"
+                  height="434"
                   allowFullScreen=""
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"

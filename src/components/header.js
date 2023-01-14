@@ -19,7 +19,7 @@ const ActionsWrapper = tw.div`mb-8 lg:mb-0`;
 const Action = tw.button`text-center inline-block w-full sm:w-48 py-3 font-semibold tracking-wide rounded hocus:outline-none focus:shadow-outline transition duration-300`;
 const PrimaryAction = tw(
   Action
-)`bg-primary-dark text-gray-100 hover:bg-secondary-dark font-secondary text-xl`;
+)`rounded-lg bg-primary-dark text-gray-100 hover:bg-secondary-dark font-secondary text-xl`;
 const SecondaryAction = tw(
   Action
 )`mt-4 sm:mt-0 sm:ml-4 text-secondary-dark font-secondary hover:text-decoration hover:text-decoration-underline hover:text-decoration-wavy hover:underline-offset-large`;
@@ -27,14 +27,14 @@ const SecondaryAction = tw(
 const SecondaryActionText = tw.span`text-xl mr-4`;
 const HighlightedText = tw.span`text-primary-dark font-secondary`;
 
-export default function Header({ settings, items, homepage, menus }) {
+export default function Header({ settings, items, homepage, mainMenu }) {
   return (
     <Wrapper css={[tw`2xl:bg-gray-100`]}>
       <HeaderWrapper>
         <HeaderContainer css={[tw`bg-gray-100`]}>
           <TwoColumn>
             <LeftColumn>
-              <Nav menus={menus} items={items} />
+              <Nav mainMenu={mainMenu} items={items} />
               <Content>
                 <Heading>
                   {settings.title} <br />

@@ -17,7 +17,8 @@ hocus:text-primary-dark cursor-pointer font-secondary
 hover:text-decoration hover:text-decoration-underline hover:text-decoration-wavy hover:underline-offset-large
 `;
 
-export default function Nav({ menus, items }) {
+export default function Nav({ mainMenu, items }) {
+  console.log("mainMenu:", mainMenu);
   return (
     <NavWrapper>
       <DesktopNavLinksWrapper>
@@ -32,22 +33,20 @@ export default function Nav({ menus, items }) {
           </BrandWrapper>
         </Link>
 
-        {menus.nodes.map((menu, i) => (
-          <DesktopNavLinksItemWrapper key={i}>
-            {menu.menuItems.edges.map(({ node }) => (
-              <div key={node.id}>
-                <DesktopNavLinks>
-                  <Link href={node.path} passHref>
-                    <NavLink>{node.label}</NavLink>
-                  </Link>
-                </DesktopNavLinks>
-              </div>
-            ))}
-          </DesktopNavLinksItemWrapper>
-        ))}
+        <DesktopNavLinksItemWrapper>
+          {mainMenu.menuItems.nodes.map(({ label, url, id }) => (
+            <div key={id}>
+              <DesktopNavLinks>
+                <Link href={url} passHref>
+                  <NavLink>{label}</NavLink>
+                </Link>
+              </DesktopNavLinks>
+            </div>
+          ))}
+        </DesktopNavLinksItemWrapper>
       </DesktopNavLinksWrapper>
 
-      <MobileNav menus={menus} items={items} />
+      <MobileNav mainMenu={mainMenu} items={items} />
     </NavWrapper>
   );
 }

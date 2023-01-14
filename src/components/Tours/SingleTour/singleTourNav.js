@@ -19,7 +19,7 @@ hocus:text-secondary-dark cursor-pointer font-secondary
 hover:text-decoration hover:text-decoration-underline hover:text-decoration-wavy hover:underline-offset-large
 `;
 
-export default function Nav({ menus, items, tour }) {
+export default function Nav({ singleTourMenu, items, tour }) {
   return (
     <NavWrapper>
       <DesktopNavLinksWrapper>
@@ -45,23 +45,20 @@ export default function Nav({ menus, items, tour }) {
           </Link>
           <Title>{tour.title}</Title>
         </BrandWrapper>
-
-        {menus.nodes.map((menu, i) => (
-          <DesktopNavLinksItemWrapper key={i}>
-            {menu.menuItems.edges.map(({ node }) => (
-              <div key={node.id}>
-                <DesktopNavLinks>
-                  <Link href={node.path} passHref>
-                    <NavLink>{node.label}</NavLink>
-                  </Link>
-                </DesktopNavLinks>
-              </div>
-            ))}
-          </DesktopNavLinksItemWrapper>
-        ))}
+        <DesktopNavLinksItemWrapper>
+          {singleTourMenu.menuItems.nodes.map(({ label, url, id }) => (
+            <div key={id}>
+              <DesktopNavLinks>
+                <Link href={url} passHref>
+                  <NavLink>{label}</NavLink>
+                </Link>
+              </DesktopNavLinks>
+            </div>
+          ))}
+        </DesktopNavLinksItemWrapper>
       </DesktopNavLinksWrapper>
 
-      <SingleTourMobileNav menus={menus} items={items} />
+      <SingleTourMobileNav singleTourMenu={singleTourMenu} items={items} />
     </NavWrapper>
   );
 }

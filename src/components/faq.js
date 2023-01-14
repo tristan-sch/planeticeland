@@ -8,7 +8,7 @@ import { Container, Wrapper } from "../misc/Layouts.js";
 const TwoColumn = tw.div`flex`;
 const Column = tw.div``;
 
-const ImageWrapper = tw.div`relative shadow hidden lg:block rounded h-144 bg-center`;
+const ImageWrapper = tw.div`relative hidden lg:block h-144 bg-center`;
 const FAQContent = tw.div`lg:ml-12`;
 const Heading = tw(SectionHeading)`lg:text-left text-secondary-dark`;
 const Description = tw.p`max-w-xl text-center mx-auto lg:mx-0 lg:text-left lg:max-w-none leading-relaxed text-sm sm:text-base lg:text-lg font-medium mt-6 lg:pr-24 text-gray-800 font-primary`;
@@ -39,6 +39,7 @@ export default function Faq({ items, faq, questions }) {
           <Column tw="hidden lg:block w-5/12 flex-shrink-0">
             <ImageWrapper>
               <Image
+                css={[tw`rounded-lg shadow-xl`]}
                 src={faq.faq.faqImage.sourceUrl}
                 alt={faq.faq.faqImage.altText}
                 layout="fill"

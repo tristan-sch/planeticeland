@@ -77,9 +77,7 @@ export default function ErrorPage({ items, homepage, errorPage }) {
                     href={errorPage ? errorPage.errorPage.buttonLink : "/"}
                     passHref
                   >
-                    <a>
-                      {errorPage ? errorPage.errorPage.button : "Go back home"}
-                    </a>
+                    <a>{errorPage ? errorPage.errorPage.button : "Homepage"}</a>
                   </Link>
                 </PrimaryAction>
               </ActionsWrapper>

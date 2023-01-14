@@ -8,7 +8,7 @@ import { SectionDescription } from "../misc/Typography.js";
 
 const HeadingContainer = tw.div``;
 const Heading = tw(SectionHeading)`text-secondary-dark`;
-const Description = tw(SectionDescription)`mx-auto text-center font-secondary`;
+const Description = tw(SectionDescription)`mx-auto text-center font-primary`;
 const Cards = tw.div`hidden sm:flex flex-wrap flex-row justify-center sm:max-w-2xl lg:max-w-5xl mx-auto`;
 const Card = tw.div`mt-20 w-full sm:w-1/3 lg:w-1/4 flex flex-col items-center`;
 const CardImage = styled.div`

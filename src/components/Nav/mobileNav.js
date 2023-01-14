@@ -12,7 +12,7 @@ const NavLinks = tw.div`px-20 py-4 font-secondary`;
 const NavlinkItem = tw.div`text-2xl tracking-widest text-gray-100 hover:text-decoration hover:text-decoration-underline hover:text-decoration-wavy hover:underline-offset-large`;
 const BrandWrapper = tw.div`flex ml-10 mt-3 py-4`;
 
-export default function MobileNav({ menus, items }) {
+export default function MobileNav({ mainMenu, items }) {
   const [navShow, setNavShow] = useState(false);
 
   const onToggleNav = () => {
@@ -66,18 +66,12 @@ export default function MobileNav({ menus, items }) {
           </CloseButton>
         </CloseButtonWrapper>
         <MobileLinksWrapper>
-          {menus.nodes.map((menu, i) => (
-            <div key={i}>
-              {menu.menuItems.edges.map(({ node }) => (
-                <NavLinks key={node.id}>
-                  <Link href={node.path} passHref>
-                    <NavlinkItem onClick={onToggleNav}>
-                      {node.label}
-                    </NavlinkItem>
-                  </Link>
-                </NavLinks>
-              ))}
-            </div>
+          {mainMenu.menuItems.nodes.map(({ label, url, id }) => (
+            <NavLinks key={id}>
+              <Link href={url} passHref>
+                <NavlinkItem onClick={onToggleNav}>{label}</NavlinkItem>
+              </Link>
+            </NavLinks>
           ))}
         </MobileLinksWrapper>
       </div>

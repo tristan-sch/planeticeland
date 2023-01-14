@@ -3,9 +3,10 @@ import Footer from "./footer";
 
 export default function Layout({
   children,
+  mainMenu,
+  singleTourFooterMenu,
   settings,
   items,
-  menus,
   footerlinks,
   homepage,
 }) {
@@ -15,12 +16,13 @@ export default function Layout({
         <title>{settings.title}</title>
         <link rel="icon" href={items.favicon.sourceUrl} />
       </Head>
-      <div className="min-h-screen">
+      <div>
         <main>{children}</main>
       </div>
       <Footer
+        mainMenu={mainMenu}
+        singleTourFooterMenu={singleTourFooterMenu}
         items={items}
-        menus={menus}
         footerlinks={footerlinks}
         homepage={homepage}
       />

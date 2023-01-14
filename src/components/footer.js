@@ -2,6 +2,7 @@ import React from "react";
 import tw, { styled } from "twin.macro";
 import Image from "next/image";
 import { Wrapper, Container } from "../misc/Layouts.js";
+import { useRouter } from "next/router";
 
 const FiveColumns = tw.div`max-w-screen-xl mx-auto py-16 lg:py-20 flex flex-wrap justify-between`;
 
@@ -29,7 +30,42 @@ const SocialLink = styled.a`
 `;
 const SocialLinkSpan = tw.span`font-secondary text-xs ml-2 text-gray-800`;
 
-export default function Footer({ items, menus, footerlinks, homepage }) {
+export default function Footer({
+  items,
+  mainMenu,
+  singleTourFooterMenu,
+  footerlinks,
+  homepage,
+}) {
+  const FooterLinkList = () => {
+    const { pathname } = useRouter();
+    return pathname.includes("/tours") ? (
+      <LinkList>
+        {singleTourFooterMenu.menuItems.nodes.map(({ label, url, id }) => (
+          <div key={id}>
+            <LinkListItem>
+              <Link href={url} passHref>
+                {label}
+              </Link>
+            </LinkListItem>
+          </div>
+        ))}
+      </LinkList>
+    ) : (
+      <LinkList>
+        {mainMenu.menuItems.nodes.map(({ label, url, id }) => (
+          <div key={id}>
+            <LinkListItem>
+              <Link href={url} passHref>
+                {label}
+              </Link>
+            </LinkListItem>
+          </div>
+        ))}
+      </LinkList>
+    );
+  };
+
   return (
     <Wrapper css={[tw`bg-gray-200`]}>
       <Container
@@ -112,19 +148,7 @@ export default function Footer({ items, menus, footerlinks, homepage }) {
           </WideColumn>
           <LinksColumn>
             <ColumnHeading>Menu</ColumnHeading>
-            {menus.nodes.map((menu, i) => (
-              <LinkList key={i}>
-                {menu.menuItems.edges.map(({ node }) => (
-                  <div key={node.id}>
-                    <LinkListItem>
-                      <Link href={node.path} passHref>
-                        {node.label}
-                      </Link>
-                    </LinkListItem>
-                  </div>
-                ))}
-              </LinkList>
-            ))}
+            <FooterLinkList />
           </LinksColumn>
 
           <LinksColumn>

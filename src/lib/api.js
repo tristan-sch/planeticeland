@@ -155,6 +155,78 @@ export async function getMenus() {
   return data?.menus;
 }
 
+export async function getMainMenu() {
+  const data = await fetchAPI(
+    `
+    query mainMenu {
+      menu(id: "Main", idType: NAME) {
+        id
+        name
+        slug
+        menuItems {
+          nodes {
+            id
+            url
+            description
+            label
+          }
+        }
+      }
+    }
+    `
+  );
+
+  return data?.menu;
+}
+
+export async function getSingleTourMenu() {
+  const data = await fetchAPI(
+    `
+    query singleTourMenu {
+      menu(id: "Single Tour", idType: NAME) {
+        id
+        name
+        slug
+        menuItems {
+          nodes {
+            id
+            url
+            description
+            label
+          }
+        }
+      }
+    }
+    `
+  );
+
+  return data?.menu;
+}
+
+export async function getSingleTourFooterMenu() {
+  const data = await fetchAPI(
+    `
+    query singleTourFooterMenu {
+      menu(id: "Footer Menu Single Tour", idType: NAME) {
+        id
+        name
+        slug
+        menuItems {
+          nodes {
+            id
+            url
+            description
+            label
+          }
+        }
+      }
+    }
+    `
+  );
+
+  return data?.menu;
+}
+
 export async function getHomepage() {
   const data = await fetchAPI(
     `
@@ -178,7 +250,17 @@ export async function getHomepage() {
         tours {
           toursHeading
           toursCta
+          toursCtaLink
           itineraryTitle
+          itinerarySubtitle
+          pricingTitle
+          toursQuoteCta
+          toursSeparator
+          toursLabelAfterPriceSlash
+          toursEmailTemplateQuoteRequest
+          whyUsTitle
+          whyUsDescription
+          moreToursBanner
         }
         contact {
           contactHeading
@@ -274,9 +356,6 @@ export async function getTours() {
               }
             }
             content
-            tourGeneral {
-              tourCta
-            }
             tourPreview {
               titlePreview
               pricePreview
@@ -312,7 +391,6 @@ export async function getSingleTour(slug) {
           seasonPreview
         }
         tourGeneral {
-          tourCta
           googleMaps {
             googleMapsIframe
             googleMapsLink
@@ -370,6 +448,36 @@ export async function getSingleTour(slug) {
             tourDay14Content
             tourDay15
             tourDay15Content
+          }
+          pricing {
+            pricingDescription
+            pricingFilters {
+              pricingFilter1 {
+                pricingFilterLabel1
+                price1
+                price2
+              }
+              pricingFilter2 {
+                pricingFilterLabel2
+                price1
+                price2
+              }
+              pricingFilter3 {
+                pricingFilterLabel3
+                price1
+                price2
+              }
+            }
+            pricingBoxes {
+              pricingBox1 {
+                pricingTitle
+                pricingContent
+              }
+              pricingBox2 {
+                pricingTitle
+                pricingContent
+              }
+            }
           }
         }
         featuredImage {
@@ -512,4 +620,30 @@ export async function getErrorPage() {
   return {
     errorPage,
   };
+}
+
+export async function getServices() {
+  const data = await fetchAPI(
+    `
+    query services {
+      services {
+        edges {
+          node {
+            id
+            title
+            content
+            featuredImage {
+              node {
+                altText
+                sourceUrl
+              }
+            }
+          }
+        }
+      }
+    }
+    `
+  );
+
+  return data?.services.edges;
 }

@@ -10,7 +10,7 @@ import SingleTourNav from "./singleTourNav";
 // import "slick-carousel/slick/slick.css";
 
 const SingleTourHeaderContainer = tw.div`mt-8 lg:mt-0`;
-const SingleTour = tw.div`max-w-md lg:max-w-none mx-auto lg:mx-0 flex flex-col items-center lg:items-stretch lg:flex-row`;
+const SingleTour = tw.div`max-w-xl lg:max-w-none mx-auto lg:mx-0 flex flex-col items-center lg:items-stretch lg:flex-row`;
 
 const TourPicturesSlider = tw(Slider)`w-full lg:w-5/12 flex-shrink-0 `;
 
@@ -34,8 +34,8 @@ const HeadingTitleMobile = tw(
 )`sm:hidden text-3xl sm:text-4xl xl:text-left leading-tight text-secondary-dark`;
 const HeadingTitle = tw(
   SectionHeading
-)`hidden sm:block text-3xl sm:text-4xl xl:text-left leading-tight text-secondary-dark`;
-const Paragraph = tw.div`max-w-md text-center mx-auto lg:mx-0 lg:text-left lg:max-w-none leading-loose text-sm sm:text-base lg:text-lg mt-8 font-primary`;
+)`hidden mt-4 lg:mt-0 sm:block text-3xl sm:text-4xl xl:text-left leading-tight text-secondary-dark`;
+const Paragraph = tw.div`max-w-lg text-center mx-auto lg:mx-0 lg:text-left lg:max-w-none leading-loose text-sm sm:text-base lg:text-lg mt-8 font-primary`;
 
 const CardMetaWrapper = styled.div`
   ${tw`hidden lg:flex`}
@@ -58,8 +58,9 @@ const SecondaryAction = tw(
 const SecondaryActionText = tw.span`text-2xl mr-4`;
 
 export default function SingleTourHeader({
+  homepage,
   tour,
-  menus,
+  singleTourMenu,
   items,
   tourPictures = null,
   textOnLeft = false,
@@ -106,7 +107,11 @@ export default function SingleTourHeader({
   return (
     <Wrapper>
       <Container css={[tw`p-8`]}>
-        <SingleTourNav menus={menus} items={items} tour={tour} />
+        <SingleTourNav
+          singleTourMenu={singleTourMenu}
+          items={items}
+          tour={tour}
+        />
         <HeadingTitleMobile>{tour.title}</HeadingTitleMobile>
         <SingleTourHeaderContainer>
           <SingleTour>
@@ -215,9 +220,16 @@ export default function SingleTourHeader({
               </CardMetaWrapper>
               <ActionsWrapper>
                 <SecondaryAction>
-                  <Link href="/" passHref>
+                  <Link
+                    href={
+                      homepage.tours.toursCtaLink
+                        ? homepage.tours.toursCtaLink
+                        : "/"
+                    }
+                    passHref
+                  >
                     <SecondaryActionText>
-                      <a>{tour.tourGeneral.tourCta}</a>
+                      <a>{homepage.tours.toursCta}</a>
                     </SecondaryActionText>
                   </Link>
                   <Image
