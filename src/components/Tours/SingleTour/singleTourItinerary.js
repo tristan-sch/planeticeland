@@ -6,9 +6,9 @@ import { SectionHeading, SectionSubheading } from "../../../misc/Headings.js";
 import { Container, Wrapper } from "../../../misc/Layouts.js";
 import Link from "next/link";
 
-const TwoColumn = tw.div`flex justify-center items-center`;
+const TwoColumn = tw.div`flex justify-center items-end`;
 const Column = tw.div``;
-const IframeWrapper = tw.div`relative shadow hidden lg:block rounded  bg-center`;
+const IframeWrapper = tw.div`relative hidden lg:block rounded bg-center`;
 const ItineraryContent = tw.div`lg:mr-24`;
 const Heading = tw(SectionHeading)`lg:text-left text-secondary-dark`;
 const Subheading = tw(
@@ -16,8 +16,8 @@ const Subheading = tw(
 )`text-center lg:text-left hover:text-decoration hover:text-decoration-underline hover:text-decoration-wavy hover:underline-offset-medium cursor-pointer`;
 const Description = tw.p`max-w-xl text-center mx-auto lg:mx-0 lg:text-left lg:max-w-none leading-relaxed text-sm sm:text-base lg:text-lg font-medium mt-6 lg:pr-24 text-gray-800 font-primary`;
 const DaysContainer = tw.dl`mt-12`;
-const FAQ = tw.div`cursor-pointer mt-8 select-none bg-gray-200 lg:bg-transparent px-8 py-4 lg:p-0 rounded-lg lg:rounded-none`;
-const Question = tw.dt`flex justify-between items-center`;
+const FAQ = tw.div`cursor-pointer mt-8 select-none px-8 py-2 lg:p-0 rounded-lg lg:rounded-none`;
+const Question = tw.dt`flex justify-between items-start`;
 const QuestionText = tw.span`text-lg lg:text-xl font-normal font-secondary`;
 const QuestionToggleIcon = styled.span`
   ${tw`ml-2 bg-secondary-dark text-gray-100 px-3 py-2 rounded-full group-hover:bg-primary-dark group-hover:text-gray-200 transition duration-300`}

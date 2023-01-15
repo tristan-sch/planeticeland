@@ -15,7 +15,7 @@ const DescriptionLink = tw.div`mt-auto inline-flex items-center pt-5 text-sm fon
 export default function Guarantees({ guarantees }) {
   return (
     <Wrapper id="guarantees">
-      <Container css={[tw`py-8`]}>
+      <Container css={[tw`sm:py-8`]}>
         <ThreeColumnContainer>
           {guarantees.map((guarantee, i) => (
             <Column key={i}>

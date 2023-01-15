@@ -4,7 +4,7 @@ import tw from "twin.macro";
 // import ReCAPTCHA from "react-google-recaptcha";
 import { Wrapper, Container } from "../misc/Layouts.js";
 
-const FormContainer = tw.div`p-10 sm:p-12 md:p-16 bg-secondary-dark text-gray-100 rounded-lg relative`;
+const FormContainer = tw.div`p-10 sm:p-12 md:p-16 bg-secondary-dark text-gray-100 sm:rounded-lg relative`;
 const Form = tw.div`mt-4`;
 const Headline2 = tw.h2`text-3xl sm:text-4xl font-bold font-primary`;
 
@@ -42,7 +42,7 @@ export default function Contact({ homepage }) {
 
   return (
     <Wrapper id="contact">
-      <Container>
+      <Container css={[tw`pb-0 sm:mb-20`]}>
         <FormContainer>
           <div tw="mx-auto max-w-4xl">
             <Headline2>{homepage.contact.contactHeading}</Headline2>

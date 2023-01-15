@@ -3,7 +3,7 @@ import tw from "twin.macro";
 import { Wrapper, Container } from "../../../misc/Layouts.js";
 import Link from "next/link";
 
-const PrimaryBackgroundContainer = tw.div`py-20 lg:py-24 bg-secondary-dark rounded-lg relative`;
+const PrimaryBackgroundContainer = tw.div`py-20 lg:py-24 bg-secondary-dark sm:rounded-lg relative`;
 const Row = tw.div`px-8 max-w-screen-lg mx-auto flex items-center relative z-10 flex-col lg:flex-row text-center`;
 
 const ColumnContainer = tw.div`lg:w-1/2 max-w-lg`;
@@ -30,8 +30,8 @@ export default function SeeMoreTours({
 }) {
   console.log(homepage.tours.moreToursBanner);
   return (
-    <Wrapper css={[tw`mb-20`]}>
-      <Container>
+    <Wrapper>
+      <Container css={[tw`pb-0 sm:mb-20`]}>
         <PrimaryBackgroundContainer>
           <Row>
             <TextContainer>
