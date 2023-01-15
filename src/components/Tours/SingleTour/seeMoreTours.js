@@ -28,7 +28,6 @@ export default function SeeMoreTours({
   errorPage,
   singleTourFooterMenu,
 }) {
-  console.log(homepage.tours.moreToursBanner);
   return (
     <Wrapper>
       <Container css={[tw`pb-0 sm:mb-20`]}>

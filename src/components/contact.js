@@ -33,9 +33,11 @@ export default function Contact({ homepage }) {
       .then(
         (result) => {
           console.log(result.text);
+          alert(homepage.contact.emaijsSuccessAlert);
         },
         (error) => {
           console.log(error.text);
+          alert(homepage.contact.emaijsErrorAlert);
         }
       );
   };

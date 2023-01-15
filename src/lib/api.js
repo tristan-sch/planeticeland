@@ -271,6 +271,7 @@ export async function getHomepage() {
           messageLabel
           messagePlaceholder
           submitLabel
+          emaijsSuccessAlert
         }
         footer {
           email
