@@ -13,7 +13,7 @@ const FAQContent = tw.div`lg:ml-12`;
 const Heading = tw(SectionHeading)`lg:text-left text-secondary-dark`;
 const Description = tw.p`max-w-xl text-center mx-auto lg:mx-0 lg:text-left lg:max-w-none leading-relaxed text-sm sm:text-base lg:text-lg font-medium mt-6 lg:pr-24 text-gray-800 font-primary`;
 
-const FAQSContainer = tw.dl`mt-12`;
+const FAQSContainer = tw.dl`mt-12 mr-0 lg:mr-6`;
 const FAQ = tw.div`cursor-pointer mt-8 select-none bg-gray-100 lg:bg-transparent px-8 py-4 lg:p-0 rounded-lg lg:rounded-none`;
 const Question = tw.dt`flex justify-between items-center`;
 const QuestionText = tw.span`text-lg lg:text-xl font-normal font-secondary`;
