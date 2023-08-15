@@ -1,17 +1,138 @@
 {
-  "extends": [
-    "next",
-    "next/core-web-vitals",
-    "eslint:recommended"
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "jest": true,
+    "es2020": true,
+    "node": true
+  },
+  "globals": {
+    "process": true
+  },
+  "ignorePatterns": [
+    "node_modules/*",
+    ".next/*",
+    ".out/*",
+    "!.prettierrc.js",
+    "next.config.js"
   ],
+  "extends": [
+    "airbnb-typescript",
+    "plugin:@next/next/recommended",
+    "next/core-web-vitals",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "plugins": ["react", "@typescript-eslint", "react-hooks", "prettier"],
   "rules": {
-    "semi": [
-      "error",
-      "always"
+    "eqeqeq": ["error", "smart"],
+    "prettier/prettier": [
+      "warn",
+      {
+        "endOfLine": "auto"
+      },
+      {
+        "usePrettierrc": true,
+        "version": "2.7.1"
+      }
     ],
-    "quotes": [
+    "react/prop-types": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-curly-newline": "off",
+    "arrow-body-style": "off",
+    "radix": "off",
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    ],
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": 0,
+    "react/jsx-wrap-multilines": [
       "error",
-      "double"
+      {
+        "declaration": false,
+        "assignment": false
+      }
+    ],
+    "react/jsx-one-expression-per-line": "off",
+    "react/destructuring-assignment": 0,
+    "react/require-default-props": "off",
+    "@typescript-eslint/no-unused-vars": "error",
+    "jsx-a11y/label-has-associated-control": "warn",
+    "@typescript-eslint/no-use-before-define": [
+      "error",
+      {
+        "functions": false,
+        "classes": false,
+        "variables": false
+      }
+    ],
+    "@typescript-eslint/no-unused-expressions": [
+      "error",
+      {
+        "allowTernary": true,
+        "allowShortCircuit": true
+      }
+    ],
+    "@typescript-eslint/no-shadow": "off",
+    "@typescript-eslint/explicit-member-accessibility": 0,
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/no-explicit-any": "error",
+    "@typescript-eslint/no-non-null-assertion": "warn",
+    "import/prefer-default-export": "off",
+    // no-document-import-in-page is a bug in next.js, should be solved in v12 once we upgrade
+    "@next/next/no-document-import-in-page": "off",
+    "import/no-default-export": "warn",
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "setupTests.ts",
+          "**/*.test.ts",
+          "**/*.test.tsx",
+          "**/*.test.disabled.ts",
+          "**/*.test.disabled.tsx",
+          "**/jest.config.js",
+          "**/jest.setup.ts"
+        ]
+      }
+    ],
+    "jsx-a11y/anchor-is-valid": "off",
+    "prefer-object-spread": "off",
+    "no-param-reassign": [
+      "error",
+      { "props": true, "ignorePropertyModificationsFor": ["draft"] }
     ]
-  }
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "overrides": [
+    {
+      "files": ["**/*.tsx"],
+      "rules": {
+        "react/prop-types": "off"
+      }
+    },
+    // Next.js needs default exports for pages
+    {
+      "files": ["./src/pages/**/*"],
+      "rules": {
+        "import/no-default-export": "off"
+      }
+    }
+  ]
 }
