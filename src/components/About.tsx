@@ -26,7 +26,7 @@ export default function About({ menus, about }: Props) {
           height={1440}
         />
         <div className="mx-auto grid max-w-7xl lg:grid-cols-2">
-          <div className="px-6 pb-24 pt-16 sm:pb-32 sm:pt-20 lg:col-start-2 lg:px-8">
+          <div className="px-6 pt-16 sm:pb-32 sm:pt-20 lg:col-start-2 lg:px-8">
             <div className="mx-auto max-w-2xl lg:mr-0 lg:max-w-lg">
               <p className="text-base font-semibold leading-8 text-secondary">
                 {currentMenuLabel}

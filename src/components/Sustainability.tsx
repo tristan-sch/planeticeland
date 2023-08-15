@@ -13,12 +13,6 @@ function classNames(...classes: string[]): string {
   return classes.filter(Boolean).join(" ");
 }
 
-const stats = [
-  { label: "Transactions every 24 hours", value: "44 million" },
-  { label: "Assets under holding", value: "$119 trillion" },
-  { label: "New users annually", value: "46,000" },
-];
-
 export default function Sustainability({ menus, sustainability }: Props) {
   const currentMenuLabel = menus.nodes[0]?.menuItems.edges[2]?.node.label || "";
   const currentMenuPath =
@@ -83,53 +77,30 @@ export default function Sustainability({ menus, sustainability }: Props) {
       <Container>
         <div className="mx-auto -mt-12 max-w-7xl px-6 sm:mt-0 lg:px-8 xl:-mt-8">
           <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
-            <p className="text-base font-semibold leading-7 text-secondary">
+            <p className="text-base font-semibold leading-7 text-cyan-600">
               {currentMenuLabel}
             </p>
-            <h2 className="mt-2 font-display font-nunito text-3xl font-medium tracking-tight text-gray-900 sm:text-4xl">
+            <h2 className="mt-2 font-display text-3xl font-medium tracking-tight text-gray-900 sm:text-4xl">
               {sustainability.heading}
             </h2>
-            <div className="mt-6 flex flex-col gap-x-8 gap-y-20 lg:flex-row">
-              <div className="lg:w-full lg:max-w-2xl lg:flex-auto">
-                {sustainability.textblock && (
-                  <p className="text-xl leading-8 text-gray-600">
-                    {sustainability.textblock}
-                  </p>
-                )}
-                <div className="mt-10 max-w-xl text-base leading-7 text-gray-700">
-                  {sustainability.textblockSecondary && (
-                    <p>{sustainability.textblockSecondary}</p>
-                  )}
-                  {sustainability.textblockTertiary && (
-                    <p className="mt-10">{sustainability.textblockTertiary}</p>
-                  )}
-                </div>
-              </div>
-              {/* TODO: add query for stats */}
-              <div className="lg:flex lg:flex-auto lg:justify-center">
-                <dl className="w-64 space-y-8 xl:w-80">
-                  {stats.map((stat) => (
-                    <div
-                      key={stat.label}
-                      className="flex flex-col-reverse gap-y-4"
-                    >
-                      <dt className="text-base leading-7 text-gray-600">
-                        {stat.label}
-                      </dt>
-                      <dd className="text-5xl font-semibold tracking-tight text-gray-900">
-                        {stat.value}
-                      </dd>
-                    </div>
-                  ))}
-                </dl>
-              </div>
+            <div className="mt-6 grid max-w-xl grid-cols-1 gap-x-16 gap-y-10 text-justify lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
+              {sustainability.textblock && (
+                <p className="mt-6 text-lg leading-8 text-gray-600">
+                  {sustainability.textblock}
+                </p>
+              )}
+              {sustainability.textblockSecondary && (
+                <p className="mt-6 text-lg leading-8 text-gray-600">
+                  {sustainability.textblockSecondary}
+                </p>
+              )}
             </div>
           </div>
         </div>
 
         {/* Image section */}
         {sustainability.image && (
-          <div className="mt-32 sm:mt-40 xl:mx-auto xl:max-w-7xl xl:px-8">
+          <div className="mt-20 xl:mx-auto xl:max-w-7xl xl:px-8">
             <Image
               src={sustainability.image.sourceUrl}
               alt={sustainability.image.altText}
@@ -141,7 +112,7 @@ export default function Sustainability({ menus, sustainability }: Props) {
         )}
 
         {/* Values section */}
-        <div className="mx-auto mt-32 max-w-7xl px-6 sm:mt-40 lg:px-8">
+        <div className="mx-auto mt-20 max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl lg:mx-0">
             <h2 className="font-nunito text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
               {sustainability.actionsGroup.heading}
