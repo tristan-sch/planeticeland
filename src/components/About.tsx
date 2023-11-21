@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { AboutTypes, MenusTypes } from "types/queryTypes";
+import sanitizeHtml from "sanitize-html";
 
 type Props = {
   menus: MenusTypes;
@@ -37,6 +38,16 @@ export default function About({ menus, about }: Props) {
               <p className="mt-6 text-lg leading-8 text-gray-600">
                 {about.textblock}
               </p>
+              {about.textblockSecondary && (
+                <div className="mt-6 text-lg leading-8 text-gray-600">
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: sanitizeHtml(about.textblockSecondary),
+                    }}
+                  />
+                </div>
+              )}
+
               <dl className="mt-16 grid max-w-xl grid-cols-1 gap-8 sm:mt-20 sm:grid-cols-2 xl:mt-16">
                 {about.services.map((service, i) => (
                   <div
