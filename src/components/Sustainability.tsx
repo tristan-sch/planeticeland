@@ -3,6 +3,7 @@ import { Container } from "./Containers";
 import { useState } from "react";
 import { MenusTypes, SustainabilityTypes } from "../types/queryTypes";
 import { Content } from "types/sharedTypes";
+import sanitizeHtml from "sanitize-html";
 
 type Props = {
   menus: MenusTypes;
@@ -165,9 +166,15 @@ export default function Sustainability({ menus, sustainability }: Props) {
                 <dt className="font-semibold text-gray-900">
                   {currentActionsPoint.heading}
                 </dt>
-                <dd className="mt-1 text-justify text-gray-600">
-                  {currentActionsPoint.textblock}
-                </dd>
+                {currentActionsPoint.textblock && (
+                  <div className="mt-1 text-justify text-gray-600">
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: sanitizeHtml(currentActionsPoint.textblock),
+                      }}
+                    />
+                  </div>
+                )}
               </div>
             ))}
           </dl>
