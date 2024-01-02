@@ -72,6 +72,7 @@ export type Action = { actions: string };
 
 export interface SustainabilityTypes extends Content {
   image: CustomImage;
+  logo: CustomImage;
   actionsGroup: {
     heading: string;
     textblock: string;
