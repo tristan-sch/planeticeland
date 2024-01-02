@@ -25,7 +25,7 @@ export default function Sustainability({ menus, sustainability }: Props) {
       {
         name: initialAction.actionsPoints.actionsHeading,
         current: !!initialAction.actionsPoints.current ?? false,
-        actions: initialAction.actionsPoints.actions.map((action) => [
+        actions: initialAction.actionsPoints.actions?.map((action) => [
           { heading: action.heading, textblock: action.textblock },
         ]),
       },
