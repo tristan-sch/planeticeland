@@ -20,6 +20,8 @@ export default function ErrorPage({ header, menus }: Props) {
               alt={header.images.logo.altText}
               width={250}
               height={39}
+              unoptimized={true}
+              loading="lazy"
             />
           </Link>
         </header>

@@ -41,6 +41,8 @@ export default function Footer({ footer }: Props) {
                     alt={footer.logo.altText}
                     width={150}
                     height={100}
+                    unoptimized={true}
+                    loading="lazy"
                   />
                 </Link>
               )}
@@ -57,6 +59,8 @@ export default function Footer({ footer }: Props) {
                       src={partnerLogo.partnerLogo?.sourceUrl}
                       alt={partnerLogo.partnerLogo?.altText}
                       className="logoFooter"
+                      unoptimized={true}
+                      loading="lazy"
                     />
                   </Link>
                 </div>

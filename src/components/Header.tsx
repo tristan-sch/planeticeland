@@ -47,6 +47,8 @@ export default function Header({
                     alt={header.images.logo.altText}
                     width={175}
                     height={27}
+                    unoptimized={true}
+                    loading="lazy"
                   />
                 </a>
               </div>
@@ -97,6 +99,8 @@ export default function Header({
                       alt={header.images.logo.altText}
                       width={175}
                       height={27}
+                      unoptimized={true}
+                      loading="lazy"
                     />
                   )}
                 </Link>

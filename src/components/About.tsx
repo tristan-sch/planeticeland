@@ -25,6 +25,8 @@ export default function About({ menus, about }: Props) {
           alt={about.image.altText}
           width={1922}
           height={1440}
+          unoptimized={true}
+          loading="lazy"
         />
         <div className="mx-auto grid max-w-7xl lg:grid-cols-2">
           <div className="px-6 pt-16 sm:pb-32 sm:pt-20 lg:col-start-2 lg:px-8">
