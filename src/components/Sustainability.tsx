@@ -112,6 +112,8 @@ export default function Sustainability({ menus, sustainability }: Props) {
                       alt={sustainability.logo.altText}
                       width={300}
                       height={116}
+                      unoptimized={true}
+                      loading="lazy"
                     />
                   </Link>
                 </div>
@@ -142,6 +144,8 @@ export default function Sustainability({ menus, sustainability }: Props) {
               className="aspect-[5/2] w-full object-cover xl:rounded-3xl"
               width={2432}
               height={1442}
+              unoptimized={true}
+              loading="lazy"
             />
           </div>
         )}

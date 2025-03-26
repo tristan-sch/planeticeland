@@ -19,6 +19,8 @@ export default function Hero({ settings, header }: Props) {
               alt={header.images.logo.altText}
               width={250}
               height={39}
+              unoptimized={true}
+              loading="lazy"
             />
             {header.teaser.activate && (
               <div className="sm:justify-left mt-20 hidden sm:mb-8 sm:flex lg:mt-10">
@@ -65,6 +67,8 @@ export default function Hero({ settings, header }: Props) {
             height={1442}
             alt={header.images.heroImage.altText}
             src={header.images.heroImage.sourceUrl}
+            unoptimized={true}
+            loading="lazy"
           />
         </div>
       </div>

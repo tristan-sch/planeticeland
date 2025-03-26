@@ -58,6 +58,8 @@ export default function Team({ team, menus }: Props) {
                   height={96}
                   src={person.picture.mediaItemUrl}
                   alt={person.picture.altText}
+                  unoptimized={true}
+                  loading="lazy"
                 />
                 <h3 className="mt-6 text-base font-semibold leading-7 tracking-tight text-gray-900">
                   {person.name}
