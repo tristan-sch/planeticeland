@@ -16,8 +16,8 @@ export default function ErrorPage({ header, menus }: Props) {
           <Link href="#">
             <span className="sr-only">Your Company</span>
             <Image
-              src={header.images.logo.sourceUrl}
-              alt={header.images.logo.altText}
+              src={header.images.logo.node.sourceUrl}
+              alt={header.images.logo.node.altText}
               width={250}
               height={39}
               unoptimized={true}

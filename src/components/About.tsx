@@ -21,8 +21,8 @@ export default function About({ menus, about }: Props) {
       <div>
         <Image
           className="h-56 w-full bg-gray-50 object-cover lg:absolute lg:inset-y-0 lg:left-0 lg:h-full lg:w-1/2"
-          src={about.image.sourceUrl}
-          alt={about.image.altText}
+          src={about.image.node.sourceUrl}
+          alt={about.image.node.altText}
           width={1922}
           height={1440}
           unoptimized={true}

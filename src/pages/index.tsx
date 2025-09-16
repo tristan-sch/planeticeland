@@ -32,7 +32,7 @@ import Footer from "components/Footer";
 import Contact from "components/Contact";
 import Faq from "components/Faq";
 import About from "components/About";
-import Sustainability from "components/Sustainability";
+import { Sustainability } from "components/Sustainability/Sustainability";
 
 type Props = {
   settings: SettingsTypes;
@@ -66,7 +66,7 @@ export default function Home({
     <>
       <Head>
         <title>{settings.title}</title>
-        <link rel="icon" href={header.images.favicon.sourceUrl} />
+        <link rel="icon" href={header.images.favicon.node.sourceUrl} />
         <meta name="description" content={settings.description} />
       </Head>
       {isBannerActivated && isBanner && (

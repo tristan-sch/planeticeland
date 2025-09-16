@@ -15,8 +15,8 @@ export default function Hero({ settings, header }: Props) {
           <div className="mx-auto max-w-2xl lg:mx-0">
             <Image
               className="hidden lg:flex"
-              src={header.images.logo.sourceUrl}
-              alt={header.images.logo.altText}
+              src={header.images.logo.node.sourceUrl}
+              alt={header.images.logo.node.altText}
               width={250}
               height={39}
               unoptimized={true}
@@ -65,8 +65,8 @@ export default function Hero({ settings, header }: Props) {
             className="aspect-[3/2] w-full bg-gray-50 object-cover lg:absolute lg:inset-0 lg:aspect-auto lg:h-full"
             width={2432}
             height={1442}
-            alt={header.images.heroImage.altText}
-            src={header.images.heroImage.sourceUrl}
+            alt={header.images.heroImage.node.altText}
+            src={header.images.heroImage.node.sourceUrl}
             unoptimized={true}
             loading="lazy"
           />

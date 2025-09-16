@@ -56,17 +56,14 @@ export default function Team({ team, menus }: Props) {
                   className="mx-auto rounded-full"
                   width={96}
                   height={96}
-                  src={person.picture.mediaItemUrl}
-                  alt={person.picture.altText}
+                  src={person.picture.node.mediaItemUrl}
+                  alt={person.picture.node.altText}
                   unoptimized={true}
                   loading="lazy"
                 />
                 <h3 className="mt-6 text-base font-semibold leading-7 tracking-tight text-gray-900">
                   {person.name}
                 </h3>
-                <p className="text-sm leading-6 text-gray-600">
-                  {person.position}
-                </p>
                 <p className="text-sm leading-6 text-gray-600">
                   {person.department}
                 </p>

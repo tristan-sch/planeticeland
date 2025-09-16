@@ -38,13 +38,13 @@ export default function Header({
             className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
             aria-label="Global"
           >
-            {header.images.logo.sourceUrl && (
+            {header.images.logo.node.sourceUrl && (
               <div className="flex lg:hidden lg:flex-1">
                 <a href="#" className="-m-1.5 p-1.5">
                   <span className="sr-only">{settings.title}</span>
                   <Image
-                    src={header.images.logo.sourceUrl}
-                    alt={header.images.logo.altText}
+                    src={header.images.logo.node.sourceUrl}
+                    alt={header.images.logo.node.altText}
                     width={175}
                     height={27}
                     unoptimized={true}
@@ -93,10 +93,10 @@ export default function Header({
               <div className="flex items-center justify-between">
                 <Link href="#" className="-m-1.5 p-1.5">
                   <span className="sr-only">{settings.title}</span>
-                  {header.images.logo.sourceUrl && (
+                  {header.images.logo.node.sourceUrl && (
                     <Image
-                      src={header.images.logo.sourceUrl}
-                      alt={header.images.logo.altText}
+                      src={header.images.logo.node.sourceUrl}
+                      alt={header.images.logo.node.altText}
                       width={175}
                       height={27}
                       unoptimized={true}
