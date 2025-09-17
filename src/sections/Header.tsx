@@ -3,7 +3,7 @@ import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
-import { Container } from "./Containers";
+import { Container } from "../components/Containers";
 import {
   ContactTypes,
   HeaderTypes,
@@ -19,13 +19,13 @@ type Props = {
   isBanner?: boolean;
 };
 
-export default function Header({
+export const Header = ({
   menus,
   settings,
   isBanner,
   header,
   contact,
-}: Props) {
+}: Props) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
@@ -154,4 +154,4 @@ export default function Header({
       </header>
     </div>
   );
-}
+};

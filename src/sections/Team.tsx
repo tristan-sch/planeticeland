@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { MenusTypes, TeamTypes } from "types/queryTypes";
-import { Container } from "./Containers";
+import { Container } from "../components/Containers";
 
 type Props = {
   team: TeamTypes;

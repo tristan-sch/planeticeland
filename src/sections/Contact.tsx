@@ -1,5 +1,5 @@
 import { ContactTypes, MenusTypes } from "types/queryTypes";
-import { Container } from "./Containers";
+import { Container } from "../components/Containers";
 import Link from "next/link";
 
 type Props = {
@@ -7,7 +7,7 @@ type Props = {
   menus: MenusTypes;
 };
 
-export default function Contact({ contact, menus }: Props) {
+export const Contact = ({ contact, menus }: Props) => {
   const currentMenuLabel = menus.nodes[0]?.menuItems.edges[4]?.node.label || "";
   const currentMenuPath =
     menus.nodes[0]?.menuItems.edges[4]?.node.path?.substring(1) || "";
@@ -55,4 +55,4 @@ export default function Contact({ contact, menus }: Props) {
       </Container>
     </section>
   );
-}
+};

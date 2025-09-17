@@ -7,7 +7,7 @@ type Props = {
   about: AboutTypes;
 };
 
-export default function About({ menus, about }: Props) {
+export const About = ({ menus, about }: Props) => {
   const currentMenuLabel = menus.nodes[0]?.menuItems.edges[0]?.node.label || "";
   const currentMenuPath =
     menus.nodes[0]?.menuItems.edges[0]?.node.path?.substring(1) || "";
@@ -71,4 +71,4 @@ export default function About({ menus, about }: Props) {
       </div>
     </section>
   );
-}
+};

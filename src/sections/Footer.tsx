@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Container } from "./Containers";
+import { Container } from "../components/Containers";
 import Link from "next/link";
 import { FooterTypes } from "types/queryTypes";
 
@@ -7,7 +7,7 @@ type Props = {
   footer: FooterTypes;
 };
 
-export default function Footer({ footer }: Props) {
+export const Footer = ({ footer }: Props) => {
   return (
     <footer className="bg-white" aria-labelledby="footer-heading">
       <Container>
@@ -85,4 +85,4 @@ export default function Footer({ footer }: Props) {
       </Container>
     </footer>
   );
-}
+};

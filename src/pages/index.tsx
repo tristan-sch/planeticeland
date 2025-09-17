@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Header from "components/Header";
+import { Header } from "sections/Header";
 import Banner from "components/Banner";
 import {
   SettingsTypes,
@@ -26,13 +26,13 @@ import {
   getFooter,
 } from "./api/api";
 import { useState } from "react";
-import Hero from "components/Hero";
-import Team from "components/Team";
-import Footer from "components/Footer";
-import Contact from "components/Contact";
-import Faq from "components/Faq";
-import About from "components/About";
-import { Sustainability } from "components/Sustainability/Sustainability";
+import { Hero } from "sections/Hero";
+import Team from "sections/Team";
+import { Footer } from "sections/Footer";
+import { Contact } from "sections/Contact";
+import { Faq } from "sections/Faq";
+import { About } from "sections/About";
+import { Sustainability } from "sections/Sustainability/Sustainability";
 
 type Props = {
   settings: SettingsTypes;

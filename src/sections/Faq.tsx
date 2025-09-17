@@ -1,6 +1,6 @@
 import { Disclosure } from "@headlessui/react";
 import { MinusSmallIcon, PlusSmallIcon } from "@heroicons/react/24/outline";
-import { Container } from "./Containers";
+import { Container } from "../components/Containers";
 import { FaqTypes, MenusTypes } from "types/queryTypes";
 
 type Props = {
@@ -8,7 +8,7 @@ type Props = {
   faq: FaqTypes;
 };
 
-export default function Faq({ menus, faq }: Props) {
+export const Faq = ({ menus, faq }: Props) => {
   const currentMenuLabel = menus.nodes[0]?.menuItems.edges[3]?.node.label || "";
   const currentMenuPath =
     menus.nodes[0]?.menuItems.edges[3]?.node.path?.substring(1) || "";
@@ -82,4 +82,4 @@ export default function Faq({ menus, faq }: Props) {
       </Container>
     </section>
   );
-}
+};
