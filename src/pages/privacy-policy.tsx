@@ -13,7 +13,7 @@ import { useIsMounted } from "hooks/useIsMounted";
 import { Link } from "components/NextLink";
 import { SectionContainer } from "components/SectionContainer";
 import { SectionHeader } from "components/SectionHeader";
-import Footer from "sections/Footer";
+import { Footer } from "sections/Footer";
 
 type Props = {
   settings: SettingsTypes;
