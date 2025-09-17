@@ -15,6 +15,7 @@ import {
   SettingsTypes,
   TeamTypes,
   SustainabilityTypes,
+  PrivacyPolicyTypes,
 } from "types/queryTypes";
 
 // ---------------------------------------------------------------------------
@@ -351,4 +352,23 @@ export const getFooter = async (): Promise<FooterTypes> => {
   }
 
   return data.page.footer;
+};
+
+// ---------------------------------------------------------------------------
+
+export const getPrivacyPolicy = async (): Promise<PrivacyPolicyTypes> => {
+  const data = await fetchAPI<{ page?: PrivacyPolicyTypes }>(
+    `
+      query privacyPolicy {
+        page(id: "/privacy-policy", idType: URI) {
+            title
+            content
+        }
+      }
+    `
+  );
+  if (!data.page) {
+    throw new Error("Privacy Policy not found");
+  }
+  return data.page;
 };
