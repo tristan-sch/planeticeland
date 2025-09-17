@@ -1,5 +1,4 @@
-import Image from 'next/image'
-
+import { NextImage } from 'components/NextImage'
 import { Link } from 'components/NextLink'
 
 import { HeaderTypes, SettingsTypes } from 'types/queryTypes'
@@ -15,14 +14,12 @@ export const Hero = ({ settings, header }: Props) => {
       <div className="mx-auto max-w-7xl lg:grid lg:grid-cols-12 lg:gap-x-8 lg:px-8">
         <div className="px-6 pb-24 pt-10 sm:pb-32 lg:col-span-7 lg:px-0 lg:pb-56 lg:pt-40 xl:col-span-6">
           <div className="mx-auto max-w-2xl lg:mx-0">
-            <Image
+            <NextImage
               className="hidden lg:flex"
               src={header.images.logo.node.sourceUrl}
               alt={header.images.logo.node.altText}
               width={250}
               height={39}
-              unoptimized={true}
-              loading="lazy"
             />
             {header.teaser.activate && (
               <div className="sm:justify-left mt-20 hidden sm:mb-8 sm:flex lg:mt-10">
@@ -60,14 +57,12 @@ export const Hero = ({ settings, header }: Props) => {
           </div>
         </div>
         <div className="relative lg:col-span-5 lg:-mr-8 xl:absolute xl:inset-0 xl:left-1/2 xl:mr-0">
-          <Image
+          <NextImage
             className="aspect-[3/2] w-full bg-gray-50 object-cover lg:absolute lg:inset-0 lg:aspect-auto lg:h-full"
             width={2432}
             height={1442}
             alt={header.images.heroImage.node.altText}
             src={header.images.heroImage.node.sourceUrl}
-            unoptimized={true}
-            loading="lazy"
           />
         </div>
       </div>

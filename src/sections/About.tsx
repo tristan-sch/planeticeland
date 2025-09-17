@@ -1,5 +1,6 @@
-import Image from 'next/image'
 import sanitizeHtml from 'sanitize-html'
+
+import { NextImage } from 'components/NextImage'
 
 import { AboutTypes, MenusTypes } from 'types/queryTypes'
 
@@ -20,14 +21,12 @@ export const About = ({ menus, about }: Props) => {
       className="relative bg-white py-24 sm:py-32"
     >
       <div>
-        <Image
+        <NextImage
           className="h-56 w-full bg-gray-50 object-cover lg:absolute lg:inset-y-0 lg:left-0 lg:h-full lg:w-1/2"
           src={about.image.node.sourceUrl}
           alt={about.image.node.altText}
           width={1922}
           height={1440}
-          unoptimized={true}
-          loading="lazy"
         />
         <div className="mx-auto grid max-w-7xl lg:grid-cols-2">
           <div className="px-6 pt-16 sm:pb-32 sm:pt-20 lg:col-start-2 lg:px-8">

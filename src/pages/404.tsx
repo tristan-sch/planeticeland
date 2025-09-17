@@ -1,5 +1,6 @@
 import Image from 'next/image'
 
+import { NextImage } from 'components/NextImage'
 import { Link } from 'components/NextLink'
 
 import { HeaderTypes, MenusTypes } from 'types/queryTypes'
@@ -17,13 +18,11 @@ export default function ErrorPage({ header, menus }: Props) {
       <header className="mx-auto w-full max-w-7xl px-6 pt-6 sm:pt-10 lg:col-span-2 lg:col-start-1 lg:row-start-1 lg:px-8">
         <Link href="#">
           <span className="sr-only">Your Company</span>
-          <Image
+          <NextImage
             src={header.images.logo.node.sourceUrl}
             alt={header.images.logo.node.altText}
             width={250}
             height={39}
-            unoptimized={true}
-            loading="lazy"
           />
         </Link>
       </header>

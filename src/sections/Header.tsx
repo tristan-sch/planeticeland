@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { Dialog, DialogPanel } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import Image from 'next/image'
 
+import { NextImage } from 'components/NextImage'
 import { Link } from 'components/NextLink'
 
 import { ContactTypes, HeaderTypes, MenusTypes, SettingsTypes } from 'types/queryTypes'
@@ -32,13 +32,11 @@ export const Header = ({ menus, settings, isBanner, header, contact }: Props) =>
               <div className="flex lg:hidden lg:flex-1">
                 <a href="#" className="-m-1.5 p-1.5">
                   <span className="sr-only">{settings.title}</span>
-                  <Image
+                  <NextImage
                     src={header.images.logo.node.sourceUrl}
                     alt={header.images.logo.node.altText}
                     width={175}
                     height={27}
-                    unoptimized={true}
-                    loading="lazy"
                   />
                 </a>
               </div>
@@ -82,13 +80,11 @@ export const Header = ({ menus, settings, isBanner, header, contact }: Props) =>
                 <Link href="#" className="-m-1.5 p-1.5">
                   <span className="sr-only">{settings.title}</span>
                   {header.images.logo.node.sourceUrl && (
-                    <Image
+                    <NextImage
                       src={header.images.logo.node.sourceUrl}
                       alt={header.images.logo.node.altText}
                       width={175}
                       height={27}
-                      unoptimized={true}
-                      loading="lazy"
                     />
                   )}
                 </Link>

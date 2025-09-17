@@ -1,8 +1,8 @@
 import { NextPage } from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
 import { Footer } from 'sections/Footer'
 
+import { NextImage } from 'components/NextImage'
 import { Link } from 'components/NextLink'
 import { SectionContainer } from 'components/SectionContainer'
 import { SectionHeader } from 'components/SectionHeader'
@@ -43,7 +43,7 @@ const PrivacyPolicy: NextPage<Props> = ({ settings, header, privacyPolicy, foote
             <Link href="/" className="-m-1.5 p-1.5">
               <span className="sr-only">{settings.title}</span>
               {header.images.logo.node.sourceUrl && (
-                <Image
+                <NextImage
                   src={header.images.logo.node.sourceUrl}
                   alt={header.images.logo.node.altText}
                   width={133}

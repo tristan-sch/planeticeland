@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import { NextImage } from 'components/NextImage'
 
 import { MenusTypes, TeamTypes } from 'types/queryTypes'
 
@@ -52,14 +52,12 @@ export default function Team({ team, menus }: Props) {
           >
             {team.staff.map((person, i) => (
               <li key={i}>
-                <Image
+                <NextImage
                   className="mx-auto rounded-full"
                   width={96}
                   height={96}
                   src={person.picture.node.mediaItemUrl}
                   alt={person.picture.node.altText}
-                  unoptimized={true}
-                  loading="lazy"
                 />
                 <h3 className="mt-6 text-base font-semibold leading-7 tracking-tight text-gray-900">
                   {person.name}

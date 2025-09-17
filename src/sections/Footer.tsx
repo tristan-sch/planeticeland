@@ -1,5 +1,4 @@
-import Image from 'next/image'
-
+import { NextImage } from 'components/NextImage'
 import { Link } from 'components/NextLink'
 
 import { FooterTypes } from 'types/queryTypes'
@@ -39,31 +38,27 @@ export const Footer = ({ footer }: Props) => {
             <div className="mt-10 flex items-center justify-center space-x-12">
               {footer.logo.node.sourceUrl && (
                 <Link href="/">
-                  <Image
+                  <NextImage
                     src={footer.logo.node.sourceUrl}
                     alt={footer.logo.node.altText}
                     width={150}
                     height={100}
-                    unoptimized={true}
-                    loading="lazy"
                   />
                 </Link>
               )}
               {footer.partnerLogos.map((partnerLogo, i) => (
                 <div className="hidden sm:flex" key={i}>
                   <Link
-                    href={partnerLogo.partnerLogo?.node.imageLink?.imageLink ?? '/'}
+                    href={partnerLogo.partnerLogo.node.imageLink?.imageLink ?? '/'}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <Image
+                    <NextImage
                       width={100}
                       height={100}
-                      src={partnerLogo.partnerLogo?.node.sourceUrl}
-                      alt={partnerLogo.partnerLogo?.node.altText}
+                      src={partnerLogo.partnerLogo.node.sourceUrl}
+                      alt={partnerLogo.partnerLogo.node.altText}
                       className="logoFooter"
-                      unoptimized={true}
-                      loading="lazy"
                     />
                   </Link>
                 </div>
