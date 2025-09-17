@@ -1,13 +1,15 @@
-import Image from "next/image";
-import { Container } from "./Containers";
-import Link from "next/link";
-import { FooterTypes } from "types/queryTypes";
+import { NextImage } from 'components/NextImage'
+import { Link } from 'components/NextLink'
+
+import { FooterTypes } from 'types/queryTypes'
+
+import { Container } from '../components/Containers'
 
 type Props = {
-  footer: FooterTypes;
-};
+  footer: FooterTypes
+}
 
-export default function Footer({ footer }: Props) {
+export const Footer = ({ footer }: Props) => {
   return (
     <footer className="bg-white" aria-labelledby="footer-heading">
       <Container>
@@ -34,44 +36,49 @@ export default function Footer({ footer }: Props) {
               ))}
             </nav>
             <div className="mt-10 flex items-center justify-center space-x-12">
-              {footer.logo.sourceUrl && (
+              {footer.logo.node.sourceUrl && (
                 <Link href="/">
-                  <Image
-                    src={footer.logo.sourceUrl}
-                    alt={footer.logo.altText}
+                  <NextImage
+                    src={footer.logo.node.sourceUrl}
+                    alt={footer.logo.node.altText}
                     width={150}
                     height={100}
-                    unoptimized={true}
-                    loading="lazy"
                   />
                 </Link>
               )}
               {footer.partnerLogos.map((partnerLogo, i) => (
                 <div className="hidden sm:flex" key={i}>
                   <Link
-                    href={partnerLogo.partnerLogo?.imageLink?.imageLink ?? "/"}
+                    href={partnerLogo.partnerLogo.node.imageLink?.imageLink ?? '/'}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <Image
+                    <NextImage
                       width={100}
                       height={100}
-                      src={partnerLogo.partnerLogo?.sourceUrl}
-                      alt={partnerLogo.partnerLogo?.altText}
+                      src={partnerLogo.partnerLogo.node.sourceUrl}
+                      alt={partnerLogo.partnerLogo.node.altText}
                       className="logoFooter"
-                      unoptimized={true}
-                      loading="lazy"
                     />
                   </Link>
                 </div>
               ))}
             </div>
             <p className="mt-10 text-center text-xs leading-5 text-gray-500">
-              {footer.textblock ?? ""}
+              {footer.textblock ?? ''}
             </p>
+            {/* TODO: add query for Privacy Policy footer item */}
+            <div className="mt-2 text-center">
+              <Link
+                href="/privacy-policy"
+                className="text-xs text-gray-600 underline hover:text-secondary"
+              >
+                Privacy Policy
+              </Link>
+            </div>
           </div>
         </div>
       </Container>
     </footer>
-  );
+  )
 }

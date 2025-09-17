@@ -1,29 +1,28 @@
-const API_URL = process.env.WORDPRESS_API_URL;
+import {
+  SUSTAINABILITY_ACTIONS_FIELDS,
+  SUSTAINABILITY_BANNER_FIELDS,
+  SUSTAINABILITY_CONTENT_FIELDS,
+} from 'fragments/sustainabilityFields'
+import { fetchAPI } from 'services/fetchAPI'
 
-async function fetchAPI(query: string) {
-  const headers = { "Content-Type": "application/json" };
+import {
+  AboutTypes,
+  BannerTypes,
+  ContactTypes,
+  FaqTypes,
+  FooterTypes,
+  HeaderTypes,
+  MenusTypes,
+  PrivacyPolicyTypes,
+  SettingsTypes,
+  SustainabilityTypes,
+  TeamTypes,
+} from 'types/queryTypes'
 
-  if (API_URL) {
-    const res = await fetch(API_URL, {
-      method: "POST",
-      headers,
-      body: JSON.stringify({
-        query,
-      }),
-    });
-    const json = await res.json();
-    if (json.errors) {
-      console.error(json.errors);
-      throw new Error("Failed to fetch API");
-    }
-    return json.data;
-  } else {
-    throw new Error("API_URL is missing");
-  }
-}
+// ---------------------------------------------------------------------------
 
-export async function getSettings() {
-  const data = await fetchAPI(
+export const getSettings = async (): Promise<SettingsTypes> => {
+  const data = await fetchAPI<{ generalSettings?: SettingsTypes }>(
     `
       query settings {
         generalSettings {
@@ -32,13 +31,18 @@ export async function getSettings() {
           url
         }
       }
-    `
-  );
-  return data?.generalSettings;
+    `,
+  )
+  if (!data.generalSettings) {
+    throw new Error('Settings not found')
+  }
+  return data.generalSettings
 }
 
-export async function getMenus() {
-  const data = await fetchAPI(
+// ---------------------------------------------------------------------------
+
+export const getMenus = async (): Promise<MenusTypes> => {
+  const data = await fetchAPI<{ menus?: MenusTypes }>(
     `
       query menus {
         menus {
@@ -59,13 +63,18 @@ export async function getMenus() {
           }
         }
       }
-    `
-  );
-  return data?.menus;
+    `,
+  )
+  if (!data.menus) {
+    throw new Error('Menus not found')
+  }
+  return data.menus
 }
 
-export async function getBanner() {
-  const data = await fetchAPI(
+// ---------------------------------------------------------------------------
+
+export const getBanner = async (): Promise<BannerTypes> => {
+  const data = await fetchAPI<{ page?: { banner: BannerTypes } }>(
     `
     query banner {
       page(id: "/banner", idType: URI) {
@@ -77,30 +86,40 @@ export async function getBanner() {
         }
       }
     }
-    `
-  );
-  return data?.page.banner;
+    `,
+  )
+  if (!data.page) {
+    throw new Error('Banner not found')
+  }
+  return data.page.banner
 }
 
-export async function getHeader() {
-  const data = await fetchAPI(
+// ---------------------------------------------------------------------------
+
+export const getHeader = async (): Promise<HeaderTypes> => {
+  const data = await fetchAPI<{ page?: { header: HeaderTypes } }>(
     `
     query header {
       page(id: "/header", idType: URI) {
         header {
           images {
             logo {
-              sourceUrl
-              altText
-            }
-            favicon {
-              sourceUrl
-              altText
+              node {
+                sourceUrl
+                altText
+              }
             }
             heroImage {
-              id
-              sourceUrl
-              altText
+              node {
+                sourceUrl
+                altText
+              }
+            }
+            favicon {
+              node {
+                sourceUrl
+                altText
+              }
             }
           }
           teaser {
@@ -126,13 +145,20 @@ export async function getHeader() {
         }
       }
     }
-    `
-  );
-  return data?.page.header;
+    `,
+  )
+
+  if (!data.page) {
+    throw new Error('Header not found')
+  }
+
+  return data.page.header
 }
 
-export async function getAbout() {
-  const data = await fetchAPI(
+// ---------------------------------------------------------------------------
+
+export const getAbout = async (): Promise<AboutTypes> => {
+  const data = await fetchAPI<{ page?: { about: AboutTypes } }>(
     `
     query about {
       page(id: "/about", idType: URI) {
@@ -145,19 +171,26 @@ export async function getAbout() {
             textblock
           }
           image {
-            sourceUrl
-            altText
+            node {
+              sourceUrl
+              altText
+            }
           }
         }
       }
     }
-    `
-  );
-  return data?.page.about;
+    `,
+  )
+  if (!data.page) {
+    throw new Error('About not found')
+  }
+  return data.page.about
 }
 
-export async function getTeam() {
-  const data = await fetchAPI(
+// ---------------------------------------------------------------------------
+
+export const getTeam = async (): Promise<TeamTypes> => {
+  const data = await fetchAPI<{ page?: { team: TeamTypes } }>(
     `
     query team {
       page(id: "/team", idType: URI) {
@@ -167,67 +200,60 @@ export async function getTeam() {
           textblockSecondary
           staff {
             name
-            position
             department
             picture {
-              id
-              mediaItemUrl
-              altText
-            }
-          }
-        }
-      }
-    }
-    `
-  );
-  return data?.page.team;
-}
-
-export async function getSustainability() {
-  const data = await fetchAPI(
-    `
-    query sustainability {
-      page(id: "/sustainability", idType: URI) {
-        sustainability {
-          heading
-          textblock
-          textblockSecondary
-          textblockTertiary
-          image {
-            sourceUrl
-            altText
-          }
-          logo {
-            sourceUrl
-            altText
-            imageLink {
-              imageLink
-            }
-          }
-          actionsGroup {
-            heading
-            textblock
-            actions {
-              actionsPoints {
-                current
-                actionsHeading
-                actions {
-                  heading
-                  textblock
-                }
+              node {
+                id
+                mediaItemUrl
+                altText
               }
             }
           }
         }
       }
     }
-    `
-  );
-  return data?.page.sustainability;
+    `,
+  )
+  if (!data.page) {
+    throw new Error('Team not found')
+  }
+  return data.page.team
 }
 
-export async function getFaq() {
-  const data = await fetchAPI(
+// ---------------------------------------------------------------------------
+
+export const getSustainability = async (): Promise<SustainabilityTypes> => {
+  const data = await fetchAPI<{ page?: SustainabilityTypes }>(
+    `
+    query sustainability {
+    page(id: "/sustainability", idType: URI) {
+      slug
+      sustainabilityContent {
+        ...sustainabilityContentFields
+      }
+      sustainabilityActions {
+        ...sustainabilityActionsFields
+      }
+      sustainabilityBannerNew {
+        ...sustainabilityBannerFields
+      }
+    }
+  }
+    ${SUSTAINABILITY_CONTENT_FIELDS}
+    ${SUSTAINABILITY_ACTIONS_FIELDS}
+    ${SUSTAINABILITY_BANNER_FIELDS}
+    `,
+  )
+  if (!data.page) {
+    throw new Error('Sustainability not found')
+  }
+  return data.page
+}
+
+// ---------------------------------------------------------------------------
+
+export const getFaq = async (): Promise<FaqTypes> => {
+  const data = await fetchAPI<{ page?: { faq: FaqTypes } }>(
     `
     query faq {
       page(id: "/faq", idType: URI) {
@@ -242,13 +268,18 @@ export async function getFaq() {
         }
       }
     }
-    `
-  );
-  return data?.page.faq;
+    `,
+  )
+  if (!data.page) {
+    throw new Error('FAQ not found')
+  }
+  return data.page.faq
 }
 
-export async function getContact() {
-  const data = await fetchAPI(
+// ---------------------------------------------------------------------------
+
+export const getContact = async (): Promise<ContactTypes> => {
+  const data = await fetchAPI<{ page?: { contact: ContactTypes } }>(
     `
     query contact {
       page(id: "/contact", idType: URI) {
@@ -267,14 +298,19 @@ export async function getContact() {
         }
       }
     }
-    `
-  );
+    `,
+  )
+  if (!data.page) {
+    throw new Error('Contact not found')
+  }
 
-  return data?.page.contact;
+  return data.page.contact
 }
 
-export async function getFooter() {
-  const data = await fetchAPI(
+// ---------------------------------------------------------------------------
+
+export const getFooter = async (): Promise<FooterTypes> => {
+  const data = await fetchAPI<{ page?: { footer: FooterTypes } }>(
     `
     query footer {
       page(id: "/footer", idType: URI) {
@@ -287,22 +323,53 @@ export async function getFooter() {
             }
           }
           logo {
-            sourceUrl
-            altText
+            node {
+              sourceUrl
+              altText
+            }
           }
           partnerLogos {
             partnerLogo {
-              sourceUrl
-              altText
-              imageLink {
-                imageLink
+              node {
+                sourceUrl
+                altText
+                mediaDetails {
+                  width
+                  height
+                }
+                imageLink {
+                  imageLink
+                }
               }
             }
           }
         }
       }
     }
+    `,
+  )
+  if (!data.page) {
+    throw new Error('Footer not found')
+  }
+
+  return data.page.footer
+}
+
+// ---------------------------------------------------------------------------
+
+export const getPrivacyPolicy = async (): Promise<PrivacyPolicyTypes> => {
+  const data = await fetchAPI<{ page?: PrivacyPolicyTypes }>(
     `
-  );
-  return data?.page.footer;
+      query privacyPolicy {
+        page(id: "/privacy-policy", idType: URI) {
+            title
+            content
+        }
+      }
+    `,
+  )
+  if (!data.page) {
+    throw new Error('Privacy Policy not found')
+  }
+  return data.page
 }

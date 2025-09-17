@@ -1,111 +1,136 @@
-import { Content, CustomImage, Link, mediaItemType } from "./sharedTypes";
+import {
+  SustainabilityActionsTypes,
+  SustainabilityBannerTypes,
+  SustainabilityContentTypes,
+} from 'fragments/sustainabilityFields'
+
+import { Content, Image, Link, MediaItemType } from './sharedTypes'
+
+// ---------------------------------------------------------------------------
 
 export type SettingsTypes = {
-  title: string;
-  description: string;
-  url: string;
-};
+  title: string
+  description: string
+  url: string
+}
+
+// ---------------------------------------------------------------------------
 
 type MenuItem = {
-  id: string;
-  label: string;
-  parentId: string;
-  path: string;
-};
+  id: string
+  label: string
+  parentId: string
+  path: string
+}
 
 export type Menu = {
-  id: string;
-  databaseId: number;
-  name: string;
+  id: string
+  databaseId: number
+  name: string
   menuItems: {
-    edges: {
-      node: MenuItem;
-    }[];
-  };
-};
+    edges: Array<{
+      node: MenuItem
+    }>
+  }
+}
+
+// ---------------------------------------------------------------------------
 
 export type MenusTypes = {
-  nodes: Menu[];
-};
-
-export interface BannerTypes extends Content {
-  activate: boolean;
-  link: string;
+  nodes: Array<Menu>
 }
 
-export interface HeaderTypes extends Content {
+// ---------------------------------------------------------------------------
+
+export type PrivacyPolicyTypes = {
+  title: string
+  content: string
+}
+
+// ---------------------------------------------------------------------------
+
+export type BannerTypes = {
+  activate: boolean
+  link: string
+} & Content
+
+// ---------------------------------------------------------------------------
+
+export type HeaderTypes = {
   images: {
-    logo: CustomImage;
-    favicon: CustomImage;
-    heroImage: CustomImage;
-  };
+    logo: Image
+    heroImage: Image
+    favicon: Image
+  }
   teaser: {
-    activate: boolean;
-    teaser: string;
-    teaserButton: Link;
-  };
+    activate: boolean
+    teaser: string
+    teaserButton: Link
+  }
   buttons: {
-    primaryButton: Link;
-    secondaryButton: Link;
-  };
-}
+    primaryButton: Link
+    secondaryButton: Link
+  }
+} & Content
 
-type Service = Content;
+// ---------------------------------------------------------------------------
 
-export interface AboutTypes extends Content {
-  services: Service[];
-  image: CustomImage;
-}
+type Service = Content
+
+// ---------------------------------------------------------------------------
+
+export type AboutTypes = {
+  services: Array<Service>
+  image: Image
+} & Content
 
 type Staff = {
-  name: string;
-  position: string;
-  department: string;
-  picture: mediaItemType;
-};
-
-export interface TeamTypes extends Content {
-  staff: Staff[];
+  name: string
+  department: string
+  picture: {
+    node: MediaItemType
+  }
 }
 
-export type Action = { actions: string };
+// ---------------------------------------------------------------------------
 
-export interface SustainabilityTypes extends Content {
-  image: CustomImage;
-  logo: CustomImage;
-  actionsGroup: {
-    heading: string;
-    textblock: string;
-    actions: {
-      actionsPoints: {
-        actionsHeading: string;
-        actions: Content[];
-        current: boolean;
-      };
-    }[];
-  };
+export type TeamTypes = {
+  staff: Array<Staff>
+} & Content
+
+// ---------------------------------------------------------------------------
+
+export type SustainabilityTypes = {
+  slug: string
+  sustainabilityContent: SustainabilityContentTypes
+  sustainabilityActions: SustainabilityActionsTypes
+  sustainabilityBannerNew: SustainabilityBannerTypes
 }
 
-type Question = Content;
+// ---------------------------------------------------------------------------
 
-export interface FaqTypes extends Content {
-  questions: Question[];
-}
+type Question = Content
 
-export interface ContactTypes extends Content {
-  contactUs: {
-    heading: string;
-    textblock: string;
-    link: Link;
-  }[];
-}
+export type FaqTypes = {
+  questions: Array<Question>
+} & Content
 
-export interface FooterTypes extends Content {
-  footerLinks: {
-    link: Link;
-  }[];
-  logo: CustomImage;
-  partnerLogos: {
-    partnerLogo: CustomImage;
-  }[];
-}
+export type ContactTypes = {
+  contactUs: Array<{
+    heading: string
+    textblock: string
+    link: Link
+  }>
+} & Content
+
+// ---------------------------------------------------------------------------
+
+export type FooterTypes = {
+  footerLinks: Array<{
+    link: Link
+  }>
+  logo: Image
+  partnerLogos: Array<{
+    partnerLogo: Image
+  }>
+} & Content

@@ -1,51 +1,54 @@
-import Head from "next/head";
-import Header from "components/Header";
-import Banner from "components/Banner";
+import { useState } from 'react'
+import Head from 'next/head'
+import { About } from 'sections/About'
+import { Contact } from 'sections/Contact'
+import { Faq } from 'sections/Faq'
+import { Footer } from 'sections/Footer'
+import { Header } from 'sections/Header'
+import { Hero } from 'sections/Hero'
+import { Sustainability } from 'sections/Sustainability/Sustainability'
+import Team from 'sections/Team'
+
+import Banner from 'components/Banner'
+
 import {
-  SettingsTypes,
-  MenusTypes,
-  HeaderTypes,
   AboutTypes,
-  TeamTypes,
-  SustainabilityTypes,
+  BannerTypes,
   ContactTypes,
   FaqTypes,
-  BannerTypes,
   FooterTypes,
-} from "types/queryTypes";
+  HeaderTypes,
+  MenusTypes,
+  SettingsTypes,
+  SustainabilityTypes,
+  TeamTypes,
+} from 'types/queryTypes'
+
 import {
-  getSettings,
-  getMenus,
-  getHeader,
   getAbout,
-  getTeam,
-  getSustainability,
-  getFaq,
-  getContact,
   getBanner,
+  getContact,
+  getFaq,
   getFooter,
-} from "./api/api";
-import { useState } from "react";
-import Hero from "components/Hero";
-import Team from "components/Team";
-import Footer from "components/Footer";
-import Contact from "components/Contact";
-import Faq from "components/Faq";
-import About from "components/About";
-import Sustainability from "components/Sustainability";
+  getHeader,
+  getMenus,
+  getSettings,
+  getSustainability,
+  getTeam,
+} from './api/api'
 
 type Props = {
-  settings: SettingsTypes;
-  menus: MenusTypes;
-  header: HeaderTypes;
-  about: AboutTypes;
-  team: TeamTypes;
-  sustainability: SustainabilityTypes;
-  faq: FaqTypes;
-  contact: ContactTypes;
-  banner: BannerTypes;
-  footer: FooterTypes;
-};
+  settings: SettingsTypes
+  menus: MenusTypes
+  header: HeaderTypes
+  about: AboutTypes
+  team: TeamTypes
+  sustainability: SustainabilityTypes
+  faq: FaqTypes
+  contact: ContactTypes
+  banner: BannerTypes
+  footer: FooterTypes
+}
 
 export default function Home({
   settings,
@@ -59,14 +62,14 @@ export default function Home({
   banner,
   footer,
 }: Props) {
-  const [isBanner, setIsBanner] = useState(true);
-  const isBannerActivated = banner.activate;
+  const [isBanner, setIsBanner] = useState(true)
+  const isBannerActivated = banner.activate
 
   return (
     <>
       <Head>
         <title>{settings.title}</title>
-        <link rel="icon" href={header.images.favicon.sourceUrl} />
+        <link rel="icon" href={header.images.favicon.node.sourceUrl} />
         <meta name="description" content={settings.description} />
       </Head>
       {isBannerActivated && isBanner && (
@@ -89,7 +92,7 @@ export default function Home({
       </main>
       <Footer footer={footer} />
     </>
-  );
+  )
 }
 
 export async function getStaticProps() {
@@ -115,7 +118,7 @@ export async function getStaticProps() {
     getFaq(),
     getBanner(),
     getFooter(),
-  ]);
+  ])
 
   return {
     props: {
@@ -131,5 +134,5 @@ export async function getStaticProps() {
       footer,
     },
     revalidate: 10,
-  };
+  }
 }

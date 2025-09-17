@@ -1,16 +1,18 @@
-import Image from "next/image";
-import { MenusTypes, TeamTypes } from "types/queryTypes";
-import { Container } from "./Containers";
+import { NextImage } from 'components/NextImage'
+
+import { MenusTypes, TeamTypes } from 'types/queryTypes'
+
+import { Container } from '../components/Containers'
 
 type Props = {
-  team: TeamTypes;
-  menus: MenusTypes;
-};
+  team: TeamTypes
+  menus: MenusTypes
+}
 
 export default function Team({ team, menus }: Props) {
-  const currentMenuLabel = menus.nodes[0]?.menuItems.edges[1]?.node.label || "";
+  const currentMenuLabel = menus.nodes[0]?.menuItems.edges[1]?.node.label || ''
   const currentMenuPath =
-    menus.nodes[0]?.menuItems.edges[1]?.node.path?.substring(1) || "";
+    menus.nodes[0]?.menuItems.edges[1]?.node.path?.substring(1) || ''
 
   return (
     <section
@@ -30,14 +32,12 @@ export default function Team({ team, menus }: Props) {
             <div
               className={`mt-6 grid max-w-xl grid-cols-1 gap-x-20 gap-y-10 text-justify  ${
                 team.textblockSecondary
-                  ? "lg:max-w-none lg:grid-cols-2 lg:gap-y-16"
-                  : "lg:max-w-xl"
+                  ? 'lg:max-w-none lg:grid-cols-2 lg:gap-y-16'
+                  : 'lg:max-w-xl'
               } `}
             >
               {team.textblock && (
-                <p className="mt-6 text-lg leading-8 text-gray-600">
-                  {team.textblock}
-                </p>
+                <p className="mt-6 text-lg leading-8 text-gray-600">{team.textblock}</p>
               )}
               {team.textblockSecondary && (
                 <p className="mt-6 text-lg leading-8 text-gray-600">
@@ -52,29 +52,22 @@ export default function Team({ team, menus }: Props) {
           >
             {team.staff.map((person, i) => (
               <li key={i}>
-                <Image
+                <NextImage
                   className="mx-auto rounded-full"
                   width={96}
                   height={96}
-                  src={person.picture.mediaItemUrl}
-                  alt={person.picture.altText}
-                  unoptimized={true}
-                  loading="lazy"
+                  src={person.picture.node.mediaItemUrl}
+                  alt={person.picture.node.altText}
                 />
                 <h3 className="mt-6 text-base font-semibold leading-7 tracking-tight text-gray-900">
                   {person.name}
                 </h3>
-                <p className="text-sm leading-6 text-gray-600">
-                  {person.position}
-                </p>
-                <p className="text-sm leading-6 text-gray-600">
-                  {person.department}
-                </p>
+                <p className="text-sm leading-6 text-gray-600">{person.department}</p>
               </li>
             ))}
           </ul>
         </div>
       </Container>
     </section>
-  );
+  )
 }
