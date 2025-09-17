@@ -1,19 +1,19 @@
 type SectionHeaderProps = {
-  headingId: string;
-  currentMenuLabel: string;
-  headingText?: string;
-  description?: string;
-  descriptionSecondary?: string;
-  className?: string;
-};
+  headingId: string
+  currentMenuLabel: string
+  headingText?: string
+  description?: string
+  descriptionSecondary?: string
+  className?: string
+}
 
 export const SectionHeader = ({
   headingId,
   currentMenuLabel,
-  headingText = "",
-  description = "",
-  descriptionSecondary = "",
-  className = "",
+  headingText = '',
+  description = '',
+  descriptionSecondary = '',
+  className = '',
 }: SectionHeaderProps) => {
   return (
     <div className={`mb-10 ${className}`}>
@@ -29,5 +29,5 @@ export const SectionHeader = ({
       <p className="mt-4 text-gray-500">{description}</p>
       <p className="mt-4 text-gray-500">{descriptionSecondary}</p>
     </div>
-  );
-};
+  )
+}

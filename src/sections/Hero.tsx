@@ -1,11 +1,13 @@
-import Image from "next/image";
-import Link from "next/link";
-import { SettingsTypes, HeaderTypes } from "types/queryTypes";
+import Image from 'next/image'
+
+import { Link } from 'components/NextLink'
+
+import { HeaderTypes, SettingsTypes } from 'types/queryTypes'
 
 type Props = {
-  settings: SettingsTypes;
-  header: HeaderTypes;
-};
+  settings: SettingsTypes
+  header: HeaderTypes
+}
 
 export const Hero = ({ settings, header }: Props) => {
   return (
@@ -25,13 +27,13 @@ export const Hero = ({ settings, header }: Props) => {
             {header.teaser.activate && (
               <div className="sm:justify-left mt-20 hidden sm:mb-8 sm:flex lg:mt-10">
                 <div className="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-500 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-                  {header.teaser.teaser}{" "}
+                  {header.teaser.teaser}{' '}
                   <Link
                     href={header.teaser.teaserButton.url}
                     className="font-semibold text-gray-900"
                   >
                     <span className="absolute inset-0" aria-hidden="true" />
-                    {header.teaser.teaserButton.title}{" "}
+                    {header.teaser.teaserButton.title}{' '}
                     <span aria-hidden="true">&rarr;</span>
                   </Link>
                 </div>
@@ -40,9 +42,7 @@ export const Hero = ({ settings, header }: Props) => {
             <h1 className="mt-24 font-nunito text-4xl font-bold tracking-tight text-gray-900 text-secondary sm:mt-10 sm:text-6xl">
               {settings.title}
             </h1>
-            <p className="mt-6 text-lg leading-8 text-gray-600">
-              {header.textblock}
-            </p>
+            <p className="mt-6 text-lg leading-8 text-gray-600">{header.textblock}</p>
             <div className="mt-10 flex items-center gap-x-6">
               <Link
                 href={header.buttons.primaryButton.url}
@@ -54,8 +54,7 @@ export const Hero = ({ settings, header }: Props) => {
                 href={header.buttons.secondaryButton.url}
                 className="text-sm font-semibold leading-6 text-gray-900"
               >
-                {header.buttons.secondaryButton.title}{" "}
-                <span aria-hidden="true">→</span>
+                {header.buttons.secondaryButton.title} <span aria-hidden="true">→</span>
               </Link>
             </div>
           </div>
@@ -73,5 +72,5 @@ export const Hero = ({ settings, header }: Props) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}

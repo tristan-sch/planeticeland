@@ -1,25 +1,22 @@
 type SelectMenuItem = {
-  label: string;
-};
+  label: string
+}
 
 type SelectMenuItemProps = {
-  title?: string;
-  items: Array<SelectMenuItem>;
-  handleSelectChange?: (selectedAction: string) => void;
-};
+  title?: string
+  items: Array<SelectMenuItem>
+  handleSelectChange?: (selectedAction: string) => void
+}
 
 export const SelectMenu = ({
-  title = "",
+  title = '',
   items,
   handleSelectChange,
 }: SelectMenuItemProps) => {
   return (
     <div>
       {title && (
-        <label
-          htmlFor={title}
-          className="block text-sm/6 font-medium text-gray-900"
-        >
+        <label htmlFor={title} className="block text-sm/6 font-medium text-gray-900">
           {title}
         </label>
       )}
@@ -38,5 +35,5 @@ export const SelectMenu = ({
         </select>
       </div>
     </div>
-  );
-};
+  )
+}

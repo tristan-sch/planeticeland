@@ -1,11 +1,13 @@
-import { XMarkIcon } from "@heroicons/react/20/solid";
-import Link from "next/link";
-import { BannerTypes } from "types/queryTypes";
+import { XMarkIcon } from '@heroicons/react/20/solid'
+
+import { BannerTypes } from 'types/queryTypes'
+
+import { Link } from './NextLink'
 
 type Props = {
-  banner: BannerTypes;
-  closeBanner: () => void;
-};
+  banner: BannerTypes
+  closeBanner: () => void
+}
 
 export default function Banner({ closeBanner, banner }: Props) {
   return (
@@ -35,5 +37,5 @@ export default function Banner({ closeBanner, banner }: Props) {
         </button>
       </div>
     </div>
-  );
+  )
 }

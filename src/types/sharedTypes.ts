@@ -1,37 +1,37 @@
 export type Content = {
-  heading?: string;
-  textblock?: string;
-  textblockSecondary?: string;
-  textblockTertiary?: string;
-};
+  heading?: string
+  textblock?: string
+  textblockSecondary?: string
+  textblockTertiary?: string
+}
 
 // ---------------------------------------------------------------------------
 
 export type Image = {
   node: {
-    sourceUrl: string;
-    altText: string;
+    sourceUrl: string
+    altText: string
     mediaDetails?: {
-      width?: number;
-      height?: number;
-    };
+      width?: number
+      height?: number
+    }
     imageLink?: {
-      imageLink: string;
-    };
-  };
-};
+      imageLink: string
+    }
+  }
+}
 
 // ---------------------------------------------------------------------------s
 
 export type MediaItemType = {
-  id: string;
-  mediaItemUrl: string;
-  altText: string;
-};
+  id: string
+  mediaItemUrl: string
+  altText: string
+}
 
 // ---------------------------------------------------------------------------
 
 export type Link = {
-  url: string;
-  title: string;
-};
+  url: string
+  title: string
+}

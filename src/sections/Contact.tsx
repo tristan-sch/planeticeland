@@ -1,16 +1,18 @@
-import { ContactTypes, MenusTypes } from "types/queryTypes";
-import { Container } from "../components/Containers";
-import Link from "next/link";
+import { Link } from 'components/NextLink'
+
+import { ContactTypes, MenusTypes } from 'types/queryTypes'
+
+import { Container } from '../components/Containers'
 
 type Props = {
-  contact: ContactTypes;
-  menus: MenusTypes;
-};
+  contact: ContactTypes
+  menus: MenusTypes
+}
 
 export const Contact = ({ contact, menus }: Props) => {
-  const currentMenuLabel = menus.nodes[0]?.menuItems.edges[4]?.node.label || "";
+  const currentMenuLabel = menus.nodes[0]?.menuItems.edges[4]?.node.label || ''
   const currentMenuPath =
-    menus.nodes[0]?.menuItems.edges[4]?.node.path?.substring(1) || "";
+    menus.nodes[0]?.menuItems.edges[4]?.node.path?.substring(1) || ''
 
   return (
     <section
@@ -28,9 +30,7 @@ export const Contact = ({ contact, menus }: Props) => {
               <h2 className="mt-2 font-display font-nunito text-3xl font-medium tracking-tight text-gray-900 sm:text-4xl">
                 {contact.heading}
               </h2>
-              <p className="mt-4 leading-7 text-gray-600">
-                {contact.textblock}
-              </p>
+              <p className="mt-4 leading-7 text-gray-600">{contact.textblock}</p>
             </div>
             <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 text-base leading-7 sm:grid-cols-2 sm:gap-y-16 lg:mx-0 lg:max-w-none lg:grid-cols-4">
               {contact.contactUs.map((contactItem, i) => (
@@ -42,7 +42,7 @@ export const Contact = ({ contact, menus }: Props) => {
                     <p>{contactItem.textblock}</p>
                     <Link
                       className="font-semibold text-secondary"
-                      href={contactItem?.link?.url ?? "/"}
+                      href={contactItem?.link?.url ?? '/'}
                     >
                       {contactItem?.link?.title}
                     </Link>
@@ -54,5 +54,5 @@ export const Contact = ({ contact, menus }: Props) => {
         </div>
       </Container>
     </section>
-  );
-};
+  )
+}

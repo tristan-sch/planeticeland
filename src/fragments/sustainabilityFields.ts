@@ -1,15 +1,15 @@
-import { Image } from "types/sharedTypes";
+import { Image } from 'types/sharedTypes'
 
 // ---------------------------------------------------------------------------
 
 export type SustainabilityContentTypes = {
-  sustainabilityContentHeading?: string;
-  sustainabilityContentTextblock?: string;
-  sustainabilityContentTextblockSecondary?: string;
-  sustainabilityContentHeadingSecondary?: string;
-  sustainabilityContentTextblockTertiary?: string;
-  sustainabilityContentImage?: Image;
-};
+  sustainabilityContentHeading?: string
+  sustainabilityContentTextblock?: string
+  sustainabilityContentTextblockSecondary?: string
+  sustainabilityContentHeadingSecondary?: string
+  sustainabilityContentTextblockTertiary?: string
+  sustainabilityContentImage?: Image
+}
 
 export const SUSTAINABILITY_CONTENT_FIELDS = `
   fragment sustainabilityContentFields on SustainabilityContent {
@@ -25,25 +25,25 @@ export const SUSTAINABILITY_CONTENT_FIELDS = `
       }
     }
   }
-`;
+`
 
 // ---------------------------------------------------------------------------
 
 export type SustainabilityActionsTypes = {
-  sustainabilityActionsHeading: string;
-  sustainabilityActionsTextblock: string;
+  sustainabilityActionsHeading: string
+  sustainabilityActionsTextblock: string
   sustainabilityActionsCategories: Array<{
     actionsTypes: {
-      label: string;
+      label: string
       actions: Array<{
-        title: string;
+        title: string
         details: Array<{
-          bulletpoint: string;
-        }>;
-      }>;
-    };
-  }>;
-};
+          bulletpoint: string
+        }>
+      }>
+    }
+  }>
+}
 
 export const SUSTAINABILITY_ACTIONS_FIELDS = `
   fragment sustainabilityActionsFields on SustainabilityActions {
@@ -61,15 +61,15 @@ export const SUSTAINABILITY_ACTIONS_FIELDS = `
       }
     }
   }
-`;
+`
 
 // ---------------------------------------------------------------------------
 
 export type SustainabilityBannerTypes = {
-  sustainabilityBannerTextblock: string;
-  sustainabilityBannerTextblockSecondary: string;
-  sustainabilityBannerEmail: string;
-};
+  sustainabilityBannerTextblock: string
+  sustainabilityBannerTextblockSecondary: string
+  sustainabilityBannerEmail: string
+}
 
 export const SUSTAINABILITY_BANNER_FIELDS = `
   fragment sustainabilityBannerFields on SustainabilityBannerNew {
@@ -77,4 +77,4 @@ export const SUSTAINABILITY_BANNER_FIELDS = `
     sustainabilityBannerTextblockSecondary
     sustainabilityBannerEmail
   }
-`;
+`

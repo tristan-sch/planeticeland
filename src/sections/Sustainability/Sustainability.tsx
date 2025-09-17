@@ -1,13 +1,13 @@
-import { MenusTypes, SustainabilityTypes } from "types/queryTypes";
+import { MenusTypes, SustainabilityTypes } from 'types/queryTypes'
 
-import { SustainabilityActions } from "./SustainabilityActions";
-import { SustainabilityContent } from "./SustainabilityContent";
-import { CallToAction } from "./CallToAction";
+import { CallToAction } from './CallToAction'
+import { SustainabilityActions } from './SustainabilityActions'
+import { SustainabilityContent } from './SustainabilityContent'
 
 type Props = {
-  menus: MenusTypes;
-  sustainability: SustainabilityTypes;
-};
+  menus: MenusTypes
+  sustainability: SustainabilityTypes
+}
 
 export const Sustainability = ({ menus, sustainability }: Props) => {
   return (
@@ -25,20 +25,15 @@ export const Sustainability = ({ menus, sustainability }: Props) => {
         sustainabilityActions={sustainability.sustainabilityActions}
       />
       <CallToAction
-        text={
-          sustainability.sustainabilityBannerNew.sustainabilityBannerTextblock
-        }
-        buttonText={
-          sustainability.sustainabilityBannerNew.sustainabilityBannerEmail
-        }
+        text={sustainability.sustainabilityBannerNew.sustainabilityBannerTextblock}
+        buttonText={sustainability.sustainabilityBannerNew.sustainabilityBannerEmail}
         onClick={() => {
-          window.location.href = `mailto:${sustainability.sustainabilityBannerNew.sustainabilityBannerEmail}`;
+          window.location.href = `mailto:${sustainability.sustainabilityBannerNew.sustainabilityBannerEmail}`
         }}
         label={
-          sustainability.sustainabilityBannerNew
-            .sustainabilityBannerTextblockSecondary
+          sustainability.sustainabilityBannerNew.sustainabilityBannerTextblockSecondary
         }
       />
     </section>
-  );
-};
+  )
+}

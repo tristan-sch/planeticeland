@@ -1,11 +1,14 @@
-import Image from "next/image";
-import { Container } from "../components/Containers";
-import Link from "next/link";
-import { FooterTypes } from "types/queryTypes";
+import Image from 'next/image'
+
+import { Link } from 'components/NextLink'
+
+import { FooterTypes } from 'types/queryTypes'
+
+import { Container } from '../components/Containers'
 
 type Props = {
-  footer: FooterTypes;
-};
+  footer: FooterTypes
+}
 
 export const Footer = ({ footer }: Props) => {
   return (
@@ -49,9 +52,7 @@ export const Footer = ({ footer }: Props) => {
               {footer.partnerLogos.map((partnerLogo, i) => (
                 <div className="hidden sm:flex" key={i}>
                   <Link
-                    href={
-                      partnerLogo.partnerLogo?.node.imageLink?.imageLink ?? "/"
-                    }
+                    href={partnerLogo.partnerLogo?.node.imageLink?.imageLink ?? '/'}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -69,7 +70,7 @@ export const Footer = ({ footer }: Props) => {
               ))}
             </div>
             <p className="mt-10 text-center text-xs leading-5 text-gray-500">
-              {footer.textblock ?? ""}
+              {footer.textblock ?? ''}
             </p>
             {/* TODO: add query for Privacy Policy footer item */}
             <div className="mt-2 text-center">
@@ -84,5 +85,5 @@ export const Footer = ({ footer }: Props) => {
         </div>
       </Container>
     </footer>
-  );
-};
+  )
+}

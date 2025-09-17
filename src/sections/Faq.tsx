@@ -1,17 +1,19 @@
-import { Disclosure } from "@headlessui/react";
-import { MinusSmallIcon, PlusSmallIcon } from "@heroicons/react/24/outline";
-import { Container } from "../components/Containers";
-import { FaqTypes, MenusTypes } from "types/queryTypes";
+import { Disclosure } from '@headlessui/react'
+import { MinusSmallIcon, PlusSmallIcon } from '@heroicons/react/24/outline'
+
+import { FaqTypes, MenusTypes } from 'types/queryTypes'
+
+import { Container } from '../components/Containers'
 
 type Props = {
-  menus: MenusTypes;
-  faq: FaqTypes;
-};
+  menus: MenusTypes
+  faq: FaqTypes
+}
 
 export const Faq = ({ menus, faq }: Props) => {
-  const currentMenuLabel = menus.nodes[0]?.menuItems.edges[3]?.node.label || "";
+  const currentMenuLabel = menus.nodes[0]?.menuItems.edges[3]?.node.label || ''
   const currentMenuPath =
-    menus.nodes[0]?.menuItems.edges[3]?.node.path?.substring(1) || "";
+    menus.nodes[0]?.menuItems.edges[3]?.node.path?.substring(1) || ''
 
   return (
     <section
@@ -29,9 +31,7 @@ export const Faq = ({ menus, faq }: Props) => {
               {faq.heading}
             </h2>
             {faq.textblock && (
-              <p className="mt-6 text-lg leading-8 text-gray-600">
-                {faq.textblock}
-              </p>
+              <p className="mt-6 text-lg leading-8 text-gray-600">{faq.textblock}</p>
             )}
             {faq.textblockSecondary && (
               <p className="mt-6 text-lg leading-8 text-gray-600">
@@ -53,15 +53,9 @@ export const Faq = ({ menus, faq }: Props) => {
                             </span>
                             <span className="ml-6 flex h-7 items-center">
                               {open ? (
-                                <MinusSmallIcon
-                                  className="h-6 w-6"
-                                  aria-hidden="true"
-                                />
+                                <MinusSmallIcon className="h-6 w-6" aria-hidden="true" />
                               ) : (
-                                <PlusSmallIcon
-                                  className="h-6 w-6"
-                                  aria-hidden="true"
-                                />
+                                <PlusSmallIcon className="h-6 w-6" aria-hidden="true" />
                               )}
                             </span>
                           </Disclosure.Button>
@@ -81,5 +75,5 @@ export const Faq = ({ menus, faq }: Props) => {
         </div>
       </Container>
     </section>
-  );
-};
+  )
+}

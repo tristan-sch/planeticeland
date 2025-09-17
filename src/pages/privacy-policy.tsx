@@ -1,34 +1,32 @@
-import { NextPage } from "next";
-import Head from "next/head";
-import Image from "next/image";
+import { NextPage } from 'next'
+import Head from 'next/head'
+import Image from 'next/image'
+import { Footer } from 'sections/Footer'
+
+import { Link } from 'components/NextLink'
+import { SectionContainer } from 'components/SectionContainer'
+import { SectionHeader } from 'components/SectionHeader'
+
+import { useIsMounted } from 'hooks/useIsMounted'
 import {
   FooterTypes,
   HeaderTypes,
   PrivacyPolicyTypes,
   SettingsTypes,
-} from "types/queryTypes";
-import { sanitizeAllHtmlContent } from "utils/utils";
-import { getFooter, getHeader, getPrivacyPolicy, getSettings } from "./api/api";
-import { useIsMounted } from "hooks/useIsMounted";
-import { Link } from "components/NextLink";
-import { SectionContainer } from "components/SectionContainer";
-import { SectionHeader } from "components/SectionHeader";
-import { Footer } from "sections/Footer";
+} from 'types/queryTypes'
+import { sanitizeAllHtmlContent } from 'utils/utils'
+
+import { getFooter, getHeader, getPrivacyPolicy, getSettings } from './api/api'
 
 type Props = {
-  settings: SettingsTypes;
-  header: HeaderTypes;
-  privacyPolicy: PrivacyPolicyTypes;
-  footer: FooterTypes;
-};
+  settings: SettingsTypes
+  header: HeaderTypes
+  privacyPolicy: PrivacyPolicyTypes
+  footer: FooterTypes
+}
 
-const PrivacyPolicy: NextPage<Props> = ({
-  settings,
-  header,
-  privacyPolicy,
-  footer,
-}) => {
-  const isMounted = useIsMounted();
+const PrivacyPolicy: NextPage<Props> = ({ settings, header, privacyPolicy, footer }) => {
+  const isMounted = useIsMounted()
 
   return (
     <>
@@ -89,8 +87,8 @@ const PrivacyPolicy: NextPage<Props> = ({
         <Footer footer={footer} />
       </div>
     </>
-  );
-};
+  )
+}
 
 export async function getStaticProps() {
   const [settings, header, privacyPolicy, footer] = await Promise.all([
@@ -98,7 +96,7 @@ export async function getStaticProps() {
     getHeader(),
     getPrivacyPolicy(),
     getFooter(),
-  ]);
+  ])
 
   return {
     props: {
@@ -108,6 +106,6 @@ export async function getStaticProps() {
       footer,
     },
     revalidate: 10,
-  };
+  }
 }
-export default PrivacyPolicy;
+export default PrivacyPolicy

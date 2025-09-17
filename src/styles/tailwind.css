@@ -5,3 +5,11 @@
 #__next {
   min-height: 100%;
 }
+
+.specific-section ul {
+  @apply list-disc pl-5; /* Apply bullet points and padding */
+}
+
+.specific-section li {
+  @apply mb-2; /* Add spacing between list items */
+}

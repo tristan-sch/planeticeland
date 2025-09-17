@@ -1,16 +1,11 @@
 type CallToActionProps = {
-  text: string;
-  buttonText: string;
-  onClick: () => void;
-  label?: string;
-};
+  text: string
+  buttonText: string
+  onClick: () => void
+  label?: string
+}
 
-export const CallToAction = ({
-  text,
-  buttonText,
-  onClick,
-  label,
-}: CallToActionProps) => {
+export const CallToAction = ({ text, buttonText, onClick, label }: CallToActionProps) => {
   return (
     <div className="bg-white pt-16 sm:pt-24">
       <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
@@ -33,5 +28,5 @@ export const CallToAction = ({
         </div>
       </div>
     </div>
-  );
-};
+  )
+}

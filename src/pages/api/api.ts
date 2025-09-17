@@ -2,8 +2,9 @@ import {
   SUSTAINABILITY_ACTIONS_FIELDS,
   SUSTAINABILITY_BANNER_FIELDS,
   SUSTAINABILITY_CONTENT_FIELDS,
-} from "fragments/sustainabilityFields";
-import { fetchAPI } from "services/fetchAPI";
+} from 'fragments/sustainabilityFields'
+import { fetchAPI } from 'services/fetchAPI'
+
 import {
   AboutTypes,
   BannerTypes,
@@ -12,11 +13,11 @@ import {
   FooterTypes,
   HeaderTypes,
   MenusTypes,
-  SettingsTypes,
-  TeamTypes,
-  SustainabilityTypes,
   PrivacyPolicyTypes,
-} from "types/queryTypes";
+  SettingsTypes,
+  SustainabilityTypes,
+  TeamTypes,
+} from 'types/queryTypes'
 
 // ---------------------------------------------------------------------------
 
@@ -30,13 +31,13 @@ export const getSettings = async (): Promise<SettingsTypes> => {
           url
         }
       }
-    `
-  );
+    `,
+  )
   if (!data.generalSettings) {
-    throw new Error("Settings not found");
+    throw new Error('Settings not found')
   }
-  return data.generalSettings;
-};
+  return data.generalSettings
+}
 
 // ---------------------------------------------------------------------------
 
@@ -62,13 +63,13 @@ export const getMenus = async (): Promise<MenusTypes> => {
           }
         }
       }
-    `
-  );
+    `,
+  )
   if (!data.menus) {
-    throw new Error("Menus not found");
+    throw new Error('Menus not found')
   }
-  return data.menus;
-};
+  return data.menus
+}
 
 // ---------------------------------------------------------------------------
 
@@ -85,13 +86,13 @@ export const getBanner = async (): Promise<BannerTypes> => {
         }
       }
     }
-    `
-  );
+    `,
+  )
   if (!data.page) {
-    throw new Error("Banner not found");
+    throw new Error('Banner not found')
   }
-  return data.page.banner;
-};
+  return data.page.banner
+}
 
 // ---------------------------------------------------------------------------
 
@@ -144,15 +145,15 @@ export const getHeader = async (): Promise<HeaderTypes> => {
         }
       }
     }
-    `
-  );
+    `,
+  )
 
   if (!data.page) {
-    throw new Error("Header not found");
+    throw new Error('Header not found')
   }
 
-  return data.page.header;
-};
+  return data.page.header
+}
 
 // ---------------------------------------------------------------------------
 
@@ -178,13 +179,13 @@ export const getAbout = async (): Promise<AboutTypes> => {
         }
       }
     }
-    `
-  );
+    `,
+  )
   if (!data.page) {
-    throw new Error("About not found");
+    throw new Error('About not found')
   }
-  return data.page.about;
-};
+  return data.page.about
+}
 
 // ---------------------------------------------------------------------------
 
@@ -211,13 +212,13 @@ export const getTeam = async (): Promise<TeamTypes> => {
         }
       }
     }
-    `
-  );
+    `,
+  )
   if (!data.page) {
-    throw new Error("Team not found");
+    throw new Error('Team not found')
   }
-  return data.page.team;
-};
+  return data.page.team
+}
 
 // ---------------------------------------------------------------------------
 
@@ -241,13 +242,13 @@ export const getSustainability = async (): Promise<SustainabilityTypes> => {
     ${SUSTAINABILITY_CONTENT_FIELDS}
     ${SUSTAINABILITY_ACTIONS_FIELDS}
     ${SUSTAINABILITY_BANNER_FIELDS}
-    `
-  );
+    `,
+  )
   if (!data.page) {
-    throw new Error("Sustainability not found");
+    throw new Error('Sustainability not found')
   }
-  return data.page;
-};
+  return data.page
+}
 
 // ---------------------------------------------------------------------------
 
@@ -267,13 +268,13 @@ export const getFaq = async (): Promise<FaqTypes> => {
         }
       }
     }
-    `
-  );
+    `,
+  )
   if (!data.page) {
-    throw new Error("FAQ not found");
+    throw new Error('FAQ not found')
   }
-  return data.page.faq;
-};
+  return data.page.faq
+}
 
 // ---------------------------------------------------------------------------
 
@@ -297,14 +298,14 @@ export const getContact = async (): Promise<ContactTypes> => {
         }
       }
     }
-    `
-  );
+    `,
+  )
   if (!data.page) {
-    throw new Error("Contact not found");
+    throw new Error('Contact not found')
   }
 
-  return data.page.contact;
-};
+  return data.page.contact
+}
 
 // ---------------------------------------------------------------------------
 
@@ -345,14 +346,14 @@ export const getFooter = async (): Promise<FooterTypes> => {
         }
       }
     }
-    `
-  );
+    `,
+  )
   if (!data.page) {
-    throw new Error("Footer not found");
+    throw new Error('Footer not found')
   }
 
-  return data.page.footer;
-};
+  return data.page.footer
+}
 
 // ---------------------------------------------------------------------------
 
@@ -365,10 +366,10 @@ export const getPrivacyPolicy = async (): Promise<PrivacyPolicyTypes> => {
             content
         }
       }
-    `
-  );
+    `,
+  )
   if (!data.page) {
-    throw new Error("Privacy Policy not found");
+    throw new Error('Privacy Policy not found')
   }
-  return data.page;
-};
+  return data.page
+}

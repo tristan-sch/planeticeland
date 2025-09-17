@@ -1,16 +1,17 @@
-import Image from "next/image";
-import { AboutTypes, MenusTypes } from "types/queryTypes";
-import sanitizeHtml from "sanitize-html";
+import Image from 'next/image'
+import sanitizeHtml from 'sanitize-html'
+
+import { AboutTypes, MenusTypes } from 'types/queryTypes'
 
 type Props = {
-  menus: MenusTypes;
-  about: AboutTypes;
-};
+  menus: MenusTypes
+  about: AboutTypes
+}
 
 export const About = ({ menus, about }: Props) => {
-  const currentMenuLabel = menus.nodes[0]?.menuItems.edges[0]?.node.label || "";
+  const currentMenuLabel = menus.nodes[0]?.menuItems.edges[0]?.node.label || ''
   const currentMenuPath =
-    menus.nodes[0]?.menuItems.edges[0]?.node.path?.substring(1) || "";
+    menus.nodes[0]?.menuItems.edges[0]?.node.path?.substring(1) || ''
 
   return (
     <section
@@ -37,9 +38,7 @@ export const About = ({ menus, about }: Props) => {
               <h2 className="mt-2 font-nunito text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
                 {about.heading}
               </h2>
-              <p className="mt-6 text-lg leading-8 text-gray-600">
-                {about.textblock}
-              </p>
+              <p className="mt-6 text-lg leading-8 text-gray-600">{about.textblock}</p>
               {about.textblockSecondary && (
                 <div className="mt-6 text-lg leading-8 text-gray-600">
                   <div
@@ -70,5 +69,5 @@ export const About = ({ menus, about }: Props) => {
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
