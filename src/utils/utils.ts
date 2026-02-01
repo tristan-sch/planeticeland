@@ -1,5 +1,7 @@
 import sanitizeHtml from 'sanitize-html'
 
+// ---------------------------------------------------------------------------
+
 export const sanitizeAllHtmlContent = (content = '') =>
   sanitizeHtml(content, {
     allowedTags: sanitizeHtml.defaults.allowedTags.concat([
@@ -8,6 +10,8 @@ export const sanitizeAllHtmlContent = (content = '') =>
       'ul',
       'li',
       'ol',
+      'br',
+      'b',
       'strong',
       'em',
       'h2',
@@ -61,6 +65,8 @@ export const sanitizeAllHtmlContent = (content = '') =>
       }),
     },
   })
+
+// ---------------------------------------------------------------------------
 
 export const getImageDisplaySize = (width?: number, height?: number) => {
   if (!width || !height) {
