@@ -68,12 +68,20 @@ export const Footer = ({ footer }: Props) => {
               {footer.textblock ?? ''}
             </p>
             {/* TODO: add query for Privacy Policy footer item */}
-            <div className="mt-2 text-center">
+            <div className="mt-2 flex flex-wrap justify-center gap-x-4 gap-y-1 text-center">
               <Link
                 href="/privacy-policy"
-                className="text-xs text-gray-600 underline hover:text-secondary"
+                className="text-xs text-gray-600 underline hover:text-cyan-700"
               >
                 Privacy Policy
+              </Link>
+              <Link
+                href="https://wp.planeticeland.is/wp-content/uploads/2026/02/travellife-certificate-scaled-1.png"
+                className="text-xs text-gray-600 underline hover:text-cyan-700"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Travelife Certified
               </Link>
             </div>
           </div>

@@ -4,6 +4,8 @@ import { SustainabilityContentTypes } from 'fragments/sustainabilityFields'
 import { NextImage } from 'components/NextImage'
 import { SectionHeader } from 'components/SectionHeader'
 
+import { sanitizeAllHtmlContent } from 'utils/utils'
+
 import { MenusTypes } from '../../types/queryTypes'
 
 // ---------------------------------------------------------------------------
@@ -35,22 +37,13 @@ export const SustainabilityContent = ({ menus, sustainabilityContent }: Props) =
         {/* Image on the left */}
         {imageSrc && (
           <div className="w-full flex-shrink-0 lg:w-1/2">
-            <div className="hidden aspect-[3/4] h-full w-full lg:block">
+            <div className="aspect-[3/4] w-full">
               <NextImage
                 src={imageSrc}
                 alt={imageAlt}
+                width={1920}
+                height={2560}
                 className="h-full w-full bg-gray-50 object-cover"
-                width={1920}
-                height={2560}
-              />
-            </div>
-            <div className="lg:hidden">
-              <NextImage
-                src={imageSrc}
-                alt={imageAlt}
-                width={1920}
-                height={2560}
-                className="aspect-[3/2] object-cover"
               />
             </div>
           </div>
@@ -59,7 +52,7 @@ export const SustainabilityContent = ({ menus, sustainabilityContent }: Props) =
         <div className="flex w-full flex-col justify-start lg:w-1/2">
           <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-xl lg:pl-5">
             <div className="lg:contents">
-              <div className="px-12 pt-16 sm:pt-20 lg:ml-8 lg:mr-0 lg:w-full lg:max-w-lg lg:flex-none lg:px-0 lg:pt-10">
+              <div className="px-12 pt-16 sm:pt-20 lg:ml-8 lg:mr-0 lg:w-full lg:max-w-lg lg:flex-none lg:px-0 lg:pt-0">
                 <SectionHeader
                   headingId="sustainability-content"
                   currentMenuLabel={currentMenuLabel}
@@ -67,15 +60,25 @@ export const SustainabilityContent = ({ menus, sustainabilityContent }: Props) =
                 />
 
                 {sustainabilityContent.sustainabilityContentTextblock && (
-                  <p className="mb-6 mt-5 text-justify text-base/7 leading-6 text-gray-700">
-                    {sustainabilityContent.sustainabilityContentTextblock}
-                  </p>
+                  <div
+                    className="mb-6 mt-5 text-justify"
+                    dangerouslySetInnerHTML={{
+                      __html: sanitizeAllHtmlContent(
+                        sustainabilityContent.sustainabilityContentTextblock,
+                      ),
+                    }}
+                  />
                 )}
 
                 {sustainabilityContent.sustainabilityContentTextblockSecondary && (
-                  <p className="mb-6 mt-5 text-justify text-base/7 leading-6 text-gray-700">
-                    {sustainabilityContent.sustainabilityContentTextblockSecondary}
-                  </p>
+                  <div
+                    className="mb-6 mt-5 text-justify"
+                    dangerouslySetInnerHTML={{
+                      __html: sanitizeAllHtmlContent(
+                        sustainabilityContent.sustainabilityContentTextblockSecondary,
+                      ),
+                    }}
+                  />
                 )}
 
                 {sustainabilityContent.sustainabilityContentHeadingSecondary && (
@@ -85,9 +88,14 @@ export const SustainabilityContent = ({ menus, sustainabilityContent }: Props) =
                 )}
 
                 {sustainabilityContent.sustainabilityContentTextblockTertiary && (
-                  <p className="mb-6 mt-5 text-justify text-base/7 leading-6 text-gray-700">
-                    {sustainabilityContent.sustainabilityContentTextblockTertiary}
-                  </p>
+                  <div
+                    className="mb-6 mt-5 text-justify"
+                    dangerouslySetInnerHTML={{
+                      __html: sanitizeAllHtmlContent(
+                        sustainabilityContent.sustainabilityContentTextblockTertiary,
+                      ),
+                    }}
+                  />
                 )}
               </div>
             </div>
